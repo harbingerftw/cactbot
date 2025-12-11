@@ -1,0 +1,363 @@
+### SAN D'ORIA: THE SECOND WALK
+# ZoneId: 1304
+
+#hideall "--Reset--"
+#hideall "--sync--"
+
+0.0 "--Reset--" SystemLogMessage { id: "7DE" } window 0,100000 jump 0
+
+#~~~~~~~~~~~~~~~~~~#
+# Faithbound Kirin #
+#~~~~~~~~~~~~~~~~~~#
+
+# Highland Battlefield will be sealed off
+10000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "148C" } window 10000,1
+10007.2 "--sync--" StartsUsing { id: "ADCA", source: "Faithbound Kirin" } window 10007,10
+10012.2 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+10017.7 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+10022.9 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 2,2
+
+10033.8 "Synchronized Strike" Ability { id: "AD95", source: "Faithbound Kirin" }
+# 10034.4 "Synchronized Strike" Ability { id: "AD96", source: "Faithbound Kirin" }
+10038.9 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+# 10038.9 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
+10045.8 "Synchronized Strike" Ability { id: "AD95", source: "Faithbound Kirin" }
+# 10046.4 "Synchronized Strike" Ability { id: "AD96", source: "Faithbound Kirin" }
+10050.9 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+# 10050.9 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
+
+10055.0 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+10062.3 "Crimson Riddle" Ability { id: ["AFF4", "AFF5"], source: "Faithbound Kirin" }
+10069.4 "Crimson Riddle" Ability { id: ["AFF4", "AFF5"], source: "Faithbound Kirin" }
+10074.6 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+
+10074.6 label "summon_cast"
+10083.6 "Summon Shijin" Ability { id: "AD7E", source: "Faithbound Kirin" } window 10084,6000
+10085.6 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "21" } jump "summon_suzaku"
+10085.6 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "22" } jump "summon_seiryu"
+10085.6 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "23" } jump "summon_byakko"
+10085.6 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "24" } jump "summon_genbu"
+# ############
+
+# Sunbound Suzaku
+# 10085.5 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "21" } window XXX,1 #TODO: PHASE START
+11000.0 label "summon_suzaku"
+11007.3 "Sun Powder" Ability { id: "AD89", source: "Sunbound Suzaku" }
+11015.2 "Vermilion Flight" Ability { id: "AD8A", source: "Sunbound Suzaku" }
+11018.3 "Arm of Purgatory" Ability { id: "AEFC", source: "Ball of Fire" }
+11018.7 "Vermilion Flight" Ability { id: "AEFB", source: "Sunbound Suzaku" }
+11018.8 "Arm of Purgatory" Ability { id: "AEFA", source: "Sunbound Suzaku" }
+11022.6 "Sun Powder" Ability { id: "AD89", source: "Sunbound Suzaku" }
+11030.2 "Stonega III" Ability { id: "B079", source: "Faithbound Kirin" }
+11030.6 "Vermilion Flight" Ability { id: "AD8A", source: "Sunbound Suzaku" }
+11033.6 "Arm of Purgatory" Ability { id: "AEFC", source: "Ball of Fire" }
+11034.0 "Vermilion Flight" Ability { id: "AEFB", source: "Sunbound Suzaku" }
+11034.1 "Arm of Purgatory" Ability { id: "AEFA", source: "Sunbound Suzaku" }
+11038.3 "Stonega III" Ability { id: "B07A", source: "Faithbound Kirin" }
+
+11042.6 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } jump "post_summon"
+11043.7 "--sync--" StartsUsing { id: "ADCB", source: "Faithbound Kirin" } jump "post_summon_suzaku_join"
+
+11050.0 "Wrought Arms?"
+11053.0 "Wringer?"
+
+label "post_summon_suzaku_join"
+11046.2 "Punishment" Ability { id: "ADCB", source: "Faithbound Kirin" }
+11057.3 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+11063.7 "--sync--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+11070.7 "Crimson Riddle" Ability { id: "AFF4", source: "Faithbound Kirin" }
+11077.8 "--sync--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "summon_cast"
+
+# Dawnbound Seiryu
+# 10086.0 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "22" } window XXX,1 #TODO: PHASE START
+12000.0 label "summon_seiryu"
+12000.0 "--sync--" Ability { id: "AD7F", source: "Dawnbound Seiryu" }
+12013.1 "Eastwind Wheel" Ability { id: ["AD80", "AD81"] } duration 3
+12015.1 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+12015.9 "--sync--" Ability { id: "AD83", source: "Dawnbound Seiryu" }
+12021.8 "Crimson Riddle" Ability { id: "AFF4", source: "Faithbound Kirin" }
+12032.2 "Eastwind Wheel" Ability { id: ["AD80", "AD81"] } duration 3
+12032.9 "Double Cast" Ability { id: "A916", source: "Faithbound Kirin" }
+12035.0 "--sync--" Ability { id: "AD83", source: "Dawnbound Seiryu" }
+12041.0 "Quake" Ability { id: "A918", source: "Faithbound Kirin" }
+12041.0 "Stonega III" Ability { id: "A917", source: "Faithbound Kirin" }
+12043.2 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "post_summon"
+# todo punishment
+
+# Duskbound Byakko
+# 10085.3 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "23" } window XXX,1 #TODO: PHASE START
+13000.0 label "summon_byakko"
+13000.0 "--sync--" Ability { id: "ADCF", source: "Duskbound Byakko" }
+13004.2 "unknown_ad8e" Ability { id: "AD8E", source: "Duskbound Byakko" }
+13009.0 "Gloaming Gleam" Ability { id: "AD8F", source: "Duskbound Byakko" }
+13010.5 "Razor Fang" Ability { id: "AD90", source: "Duskbound Byakko" }
+13011.7 "unknown_ad8d" Ability { id: "AD8D", source: "Duskbound Byakko" }
+13014.3 "unknown_ad8e" Ability { id: "AD8E", source: "Duskbound Byakko" }
+13019.1 "Gloaming Gleam" Ability { id: "AD8F", source: "Duskbound Byakko" }
+13020.6 "Razor Fang" Ability { id: "AD90", source: "Duskbound Byakko" }
+13021.7 "unknown_ad8d" Ability { id: "AD8D", source: "Duskbound Byakko" }
+13024.2 "Quake" Ability { id: "B07B", source: "Faithbound Kirin" }
+13024.4 "unknown_ad8e" Ability { id: "AD8E", source: "Duskbound Byakko" }
+13029.2 "Gloaming Gleam" Ability { id: "AD8F", source: "Duskbound Byakko" }
+13029.3 "Quake" Ability { id: "B07C", source: "Faithbound Kirin" }
+13030.6 "Razor Fang" Ability { id: "AD90", source: "Duskbound Byakko" }
+13031.8 "unknown_ad8d" Ability { id: "AD8D", source: "Duskbound Byakko" }
+13034.3 "Quake" Ability { id: "B07C", source: "Faithbound Kirin" }
+13034.4 "unknown_ad8e" Ability { id: "AD8E", source: "Duskbound Byakko" }
+13039.2 "Gloaming Gleam" Ability { id: "AD8F", source: "Duskbound Byakko" }
+13039.3 "Quake" Ability { id: "B07C", source: "Faithbound Kirin" }
+13040.8 "Razor Fang" Ability { id: "AD90", source: "Duskbound Byakko" }
+
+13044.6 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } jump "post_summon"
+13043.7 "--sync--" StartsUsing { id: "ADCB", source: "Faithbound Kirin" } jump "post_summon_byakko_join"
+
+13050.0 "Wrought Arms?"
+13053.0 "Wringer?"
+
+label "post_summon_byakko_join"
+13048.4 "Punishment" Ability { id: "ADCB", source: "Faithbound Kirin" }
+13059.5 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+13065.9 "--sync--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+13072.8 "Crimson Riddle" Ability { id: "AFF4", source: "Faithbound Kirin" }
+13079.9 "--sync--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "summon_cast"
+
+# Moonbound Genbu
+# 10085.3 "--sync--" ActorControl { command: "80000027", data2: "36E5", data0: "24" } window XXX,1 #TODO: PHASE START
+14000.0 label "summon_genbu"
+14000.0 "Shattering Stomp" Ability { id: "AD84", source: "Moonbound Genbu" }
+14010.1 "Moontide Font" Ability { id: "AD85", source: "Moonbound Genbu" }
+14010.3 "Moontide Font" Ability { id: "AD86", source: "Moonbound Genbu" }
+14015.2 "Moontide Font" Ability { id: "AD85", source: "Moonbound Genbu" }
+14015.3 "Moontide Font" Ability { id: "AD86", source: "Moonbound Genbu" }
+14020.1 "Midwinter March" Ability { id: "AD87", source: "Moonbound Genbu" }
+14021.1 "Midwinter March" Ability { id: "AD31", source: "Moonbound Genbu" }
+14023.2 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+14026.2 "Northern Current" Ability { id: "AD88", source: "Moonbound Genbu" }
+14031.0 "Crimson Riddle" Ability { id: "AFF5", source: "Faithbound Kirin" }
+14036.3 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } jump "post_summon"
+# todo punishment
+
+# ############
+
+15500.0 label "post_summon"
+# 15000.0 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+15505.4 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 10,10
+15513.8 "Wringer" Ability { id: "AD92", source: "Faithbound Kirin" }
+15518.9 "Dead Wringer" Ability { id: "AD98" }
+# 10150.9 "Dead Wringer" Ability { id: "AD97", source: "Sculpted Arm" }
+15528.5 "Striking Right/Left" Ability { id: ["AD93", "ADAF"], source: "Faithbound Kirin" }
+15533.5 "Smiting Right/Left" Ability { id: ["AD99", "ADAA"] }
+15538.8 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+15547.3 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
+15551.3 "Wringer/Striking Right" Ability { id: ["ADAD", "ADAE", "ADAF"] }
+
+15552.6 "Synchronized Sequence (cast)" Ability { id: "ADA0" }
+15553.3 "Synchronized Sequence" Ability { id: "ADA1" }
+15557.7 "Wringer/Striking Right" Ability { id: ["ADA2", "ADAE", "ADAF"] }
+15557.7 "Synchronized Smite" Ability { id: "AD9C" }
+# 10189.7 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
+15562.8 "Dead Wringer/Striking Right" Ability { id: ["ADA7", "ADA3", "ADA4"] }
+# 10194.8 "Dead Wringer" Ability { id: "ADA8", source: "Sculpted Arm" }
+
+# # tank tower phase
+15567.6 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+15576.3 "Mighty Grip" Ability { id: "ADB1", source: "Faithbound Kirin" }
+15578.4 "--untargetable--"
+# 15082.0 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+15587.0 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+15596.0 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+# 15097.0 #"Deadly Hold" Ability { id: "AF80", source: "Chiseled Arm" }
+15597.0 "Deadly Hold" Ability { id: "ADB2", source: "Faithbound Kirin" }
+# 15098.5 #"Deadly Hold" Ability { id: "ADB6", source: "Chiseled Arm" }
+# 15098.5 #"Deadly Hold" Ability { id: "ADB5", source: "Chiseled Arm" }
+# 15098.7 #"unknown_adb8" Ability { id: "ADB8", source: "Chiseled Arm" }
+# 15098.7 #"unknown_adb7" Ability { id: "ADB7", source: "Chiseled Arm" }
+# 15104.7 #"unknown_adba" Ability { id: "ADBA", source: "Chiseled Arm" }
+# 15104.7 #"unknown_adb9" Ability { id: "ADB9", source: "Chiseled Arm" }
+15605.1 "Bury" Ability { id: "ADBF" }
+# 15105.2 "unknown_adb4" Ability { id: "ADB4", source: "Faithbound Kirin" }
+15610.5 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+15619.5 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+15640.5 "Kirin Captivator (enrage)"
+
+# 15642.9 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } window 60,10
+15648.0 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 70,10
+15655.5 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
+15659.5 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
+15661.5 "Double Wringer" Ability { id: "AD9D", source: "Faithbound Kirin" }
+15666.0 "Synchronized Strike" Ability { id: "ADA5", source: "Faithbound Kirin" }
+15666.6 "Dead Wringer" Ability { id: "AD98", source: "Sculpted Arm" }
+15666.6 "Dead Wringer" Ability { id: "AD97", source: "Sculpted Arm" }
+15666.6 "Synchronized Strike" Ability { id: "ADA6", source: "Faithbound Kirin" }
+15671.7 "Synchronized Smite" Ability { id: "ADAB", source: "Sculpted Arm" }
+15671.7 "Synchronized Smite" Ability { id: "ADAC", source: "Sculpted Arm" }
+15679.2 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
+15683.2 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
+15684.5 "Synchronized Sequence" Ability { id: "ADA0", source: "Faithbound Kirin" }
+15685.2 "Synchronized Sequence" Ability { id: "ADA1", source: "Faithbound Kirin" }
+15689.6 "Wringer" Ability { id: "ADA2", source: "Faithbound Kirin" }
+15689.6 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+15689.6 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
+15694.7 "Dead Wringer" Ability { id: "ADA7", source: "Sculpted Arm" }
+15694.7 "Dead Wringer" Ability { id: "ADA8", source: "Sculpted Arm" }
+15702.8 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+15707.3 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "summon_cast"
+# 15216.2 "Summon Shijin" Ability { id: "AD7E", source: "Faithbound Kirin" }
+
+
+# 14000.0 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+# 14008.7 "Mighty Grip" Ability { id: "ADB1", source: "Faithbound Kirin" } window 2,2
+# 14010.8 "--untargetable--"
+# 14119.3 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+# 14128.3 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+# 14129.3 "Deadly Hold" Ability { id: "ADB2", source: "Faithbound Kirin" }
+# 14137.4 "Bury" Ability { id: "ADBF", source: "Faithbound Kirin" }
+# 14137.6 "--sync--" Ability { id: "ADB4", source: "Faithbound Kirin" }
+# 14142.8 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+# 14151.8 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
+# 14172.3 "Enrage" # lol
+
+
+# 15333.1 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } window 30,10
+# 15342.7 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 2,2
+# 15350.2 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
+# 15354.2 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
+# 15355.6 "Synchronized Sequence" Ability { id: "ADA0", source: "Faithbound Kirin" }
+# # 10488.2 "Synchronized Sequence" Ability { id: "ADA1", source: "Faithbound Kirin" }
+# 15360.7 "Wringer" Ability { id: "ADA2", source: "Faithbound Kirin" }
+# 15360.7 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+# # 10492.7 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
+# 15365.7 "Dead Wringer" Ability { id: "ADA7", source: "Sculpted Arm" }
+# # 10497.8 "Dead Wringer" Ability { id: "ADA8", source: "Sculpted Arm" }
+# 15374.3 "Striking Left" Ability { id: "ADAF", source: "Faithbound Kirin" }
+# 15378.3 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
+# 15380.2 "Smiting Left Sequence" Ability { id: "AD9F", source: "Faithbound Kirin" }
+# 15385.3 "Wringer" Ability { id: "ADA2", source: "Faithbound Kirin" }
+# 15385.3 "Smiting Left" Ability { id: "AD9A", source: "Sculpted Arm" }
+# 15390.4 "Dead Wringer" Ability { id: "ADA8", source: "Sculpted Arm" }
+# # 10522.4 "Dead Wringer" Ability { id: "ADA7", source: "Sculpted Arm" }
+# 15398.5 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+# 15403.0 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "summon_cast"
+
+#~~~~~~~~~~~~~~~~#
+# Ultima & Omega #
+#~~~~~~~~~~~~~~~~#
+
+# Armada Airship will be sealed off
+20000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "14B2" } window 20000,1
+20005.2 "--sync--" StartsUsing { id: "AD2B", source: "Omega, the One" } window 20005,10
+20011.7 "Ion Efflux" Ability { id: "AD2B", source: "Omega, the One" }
+# 20015.4 "Antimatter" Ability { id: "AD10", source: "Ultima, the Feared" }
+20016.3 "Antimatter" Ability { id: "AD11", source: "Ultima, the Feared" }
+20020.5 "Energy Orb" Ability { id: "AD08", source: "Ultima, the Feared" }
+20023.0 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20027.7 "Energizing Equilibrium" Ability { id: "AD1C", source: "Ultima, the Feared" }
+20028.7 "Energy Ray" Ability { id: "AD32", source: "Energy Orb" }
+20031.8 "Aft-to-fore Fire" Ability { id: "AD27", source: "Omega, the One" }
+20032.3 "Omega Blaster" Ability { id: "AD29", source: "Omega, the One" }
+20033.9 "Foreward Blaster" Ability { id: "AD26", source: "Omega, the One" }
+20034.6 "Omega Blaster" Ability { id: "AD2A", source: "Omega, the One" }
+20046.3 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20048.1 "Tractor Beam" Ability { id: "AD06", source: "Ultima, the Feared" }
+20048.4 "Anti-personnel Missile" Ability { id: "B087", source: "Omega, the One" }
+20048.6 "Crash" Ability { id: "AD07", source: "Ultima, the Feared" }
+20048.6 "Tractor Beam" Ability { id: "B086", source: "Ultima, the Feared" }
+20051.3 "Energizing Equilibrium" Ability { id: "AD1C", source: "Ultima, the Feared" }
+20053.4 "Anti-personnel Missile" Ability { id: "B088", source: "Omega, the One" }
+20054.6 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20065.7 "Surface Missile" Ability { id: "B075", source: "Omega, the One" }
+20066.8 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20067.7 "Energy Orb" Ability { id: "AD08", source: "Ultima, the Feared" }
+20068.9 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20071.0 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20075.0 "Anti-personnel Missile" Ability { id: "B087", source: "Omega, the One" }
+20075.9 "Energy Ray" Ability { id: "AD32", source: "Energy Orb" }
+20077.9 "Energizing Equilibrium" Ability { id: "AD1C", source: "Ultima, the Feared" }
+20080.0 "Anti-personnel Missile" Ability { id: "B088", source: "Omega, the One" }
+20083.1 "Mana Screen" Ability { id: "AD09", source: "Ultima, the Feared" }
+20088.2 "Energy Orb" Ability { id: "AD08", source: "Ultima, the Feared" }
+20096.3 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20096.5 "Energy Ray" Ability { id: "AD32", source: "Energy Orb" }
+20097.2 "Energy Ray" Ability { id: "AD0D", source: "Ultima, the Feared" }
+20101.9 "Trajectory Projection" Ability { id: "AD23", source: "Omega, the One" }
+20103.6 "Energizing Equilibrium" Ability { id: "AD1C", source: "Ultima, the Feared" }
+20112.6 "Guided Missile" Ability { id: "AD24", source: "Omega, the One" }
+20118.2 "--untargetable--" Ability { id: "AD12", source: "Ultima, the Feared" }
+20118.3 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20118.7 "Tractor Field" Ability { id: "AD13", source: "Ultima, the Feared" }
+20123.5 "Multi-missile" Ability { id: "AFEB", source: "Omega, the One" }
+20123.6 "Citadel Siege" Ability { id: "AD14", source: "Ultima, the Feared" }
+20125.4 "Multi-missile" Ability { id: "AFED", source: "Omega, the One" }
+20125.5 "Multi-missile" Ability { id: "AFEC", source: "Omega, the One" }
+20127.6 "Citadel Siege" Ability { id: "AD15", source: "Ultima, the Feared" }
+20127.8 "Multi-missile" Ability { id: "AFEB", source: "Omega, the One" }
+20128.6 "Citadel Siege" Ability { id: "AD18", source: "Ultima, the Feared" }
+20129.7 "Multi-missile" Ability { id: "AFED", source: "Omega, the One" }
+20129.8 "Multi-missile" Ability { id: "AFEC", source: "Omega, the One" }
+20131.7 "Citadel Siege" Ability { id: "AD16", source: "Ultima, the Feared" }
+20132.1 "Multi-missile" Ability { id: "AFEB", source: "Omega, the One" }
+20132.6 "Citadel Siege" Ability { id: "AD18", source: "Ultima, the Feared" }
+20133.9 "Multi-missile" Ability { id: "AFED", source: "Omega, the One" }
+20134.1 "Multi-missile" Ability { id: "AFEC", source: "Omega, the One" }
+20135.7 "Citadel Siege" Ability { id: "AD17", source: "Ultima, the Feared" }
+20136.4 "Multi-missile" Ability { id: "AFEB", source: "Omega, the One" }
+20136.7 "Citadel Siege" Ability { id: "AD18", source: "Ultima, the Feared" }
+20138.2 "Multi-missile" Ability { id: "AFED", source: "Omega, the One" }
+20138.3 "Multi-missile" Ability { id: "AFEC", source: "Omega, the One" }
+20140.7 "Citadel Siege" Ability { id: "AD18", source: "Ultima, the Feared" }
+20145.8 "--ultima targetable--"
+20152.9 "Citadel Buster" Ability { id: "AD1B", source: "Ultima, the Feared" }
+20158.7 "Hyper Pulse" Ability { id: "AD2F", source: "Omega, the One" }
+20160.8 "--omega targetable--"
+20171.2 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20176.0 "Tractor Beam" Ability { id: "AD06", source: "Ultima, the Feared" }
+20176.5 "Crash" Ability { id: "AD07", source: "Ultima, the Feared" }
+20176.5 "Tractor Beam" Ability { id: "B086", source: "Ultima, the Feared" }
+20176.7 "Trajectory Projection" Ability { id: "AD23", source: "Omega, the One" }
+20187.3 "Mana Screen" Ability { id: "AD09", source: "Ultima, the Feared" }
+20187.5 "Guided Missile" Ability { id: "AD24", source: "Omega, the One" }
+20192.4 "Energy Orb" Ability { id: "AD08", source: "Ultima, the Feared" }
+20199.6 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20200.7 "Energy Ray" Ability { id: "AD32", source: "Energy Orb" }
+20201.4 "Energy Ray" Ability { id: "AD0C", source: "Ultima, the Feared" }
+20201.7 "Anti-personnel Missile" Ability { id: "B087", source: "Omega, the One" }
+20202.0 "Energy Ray" Ability { id: "AD0B", source: "Ultima, the Feared" }
+20206.7 "Anti-personnel Missile" Ability { id: "B088", source: "Omega, the One" }
+20211.1 "Energizing Equilibrium" Ability { id: "AD30", source: "Omega, the One" }
+20215.3 "Chemical Bomb" Ability { id: "AD0E", source: "Ultima, the Feared" }
+20215.9 "Chemical Bomb" Ability { id: "AD0F", source: "Ultima, the Feared" }
+20218.9 "Chemical Bomb" Ability { id: "AD0F", source: "Ultima, the Feared" }
+20221.8 "Chemical Bomb" Ability { id: "AD0F", source: "Ultima, the Feared" }
+20222.5 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20224.8 "Chemical Bomb" Ability { id: "AD0F", source: "Ultima, the Feared" }
+20233.6 "Surface Missile" Ability { id: "B075", source: "Omega, the One" }
+20234.7 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20235.8 "--jump--" Ability { id: "AD2C", source: "Omega, the One" }
+20236.6 "Energy Orb" Ability { id: "AD08", source: "Ultima, the Feared" }
+20236.8 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20238.8 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20238.9 "Surface Missile" Ability { id: "B076", source: "Omega, the One" }
+20240.8 "Energizing Equilibrium" Ability { id: "AD1C", source: "Ultima, the Feared" }
+20244.6 "Aft-to-fore Fire" Ability { id: "AD27", source: "Omega, the One" }
+20244.9 "Energy Ray" Ability { id: "AD32", source: "Energy Orb" }
+20245.1 "Omega Blaster" Ability { id: "AD29", source: "Omega, the One" }
+20246.7 "Foreward Blaster" Ability { id: "AD26", source: "Omega, the One" }
+20247.4 "Omega Blaster" Ability { id: "AD2A", source: "Omega, the One" }
+20264.1 "Mana Screen" Ability { id: "AD09", source: "Ultima, the Feared" }
+
+
+#~~~~~~~~~~~~#
+# Kam'lanaut #
+#~~~~~~~~~~~~#
+
+# The Stellar Fulcrum will be sealed off
+30000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "1488" } window 30000,1
+30006.1 "--sync--" StartsUsing { id: "ACBD", source: "Kam'lanaut" } window 30006,10
+
+#~~~~~~~~~~~~~#
+# Eald'narche #
+#~~~~~~~~~~~~~#
+
+# The Celestial Nexus will be sealed off
+40000.0 "--sync--" SystemLogMessage { id: "7DC", param1: "148A" } window 40000,1
+40006.1 "--sync--" StartsUsing { id: "AD51", source: "Eald'narche" } window 40006,10

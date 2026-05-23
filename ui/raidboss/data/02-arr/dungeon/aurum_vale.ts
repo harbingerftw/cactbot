@@ -8,6 +8,12 @@ export type Data = RaidbossData;
 const triggerSet: TriggerSet<Data> = {
   id: 'TheAurumVale',
   zoneId: ZoneId.TheAurumVale,
+  comments: {
+    en: 'pre-7.4 rework',
+    de: 'Vor der 7.4 Überarbeitung',
+    cn: '7.4改版前',
+    ko: '7.4 개편 전',
+  },
   triggers: [
     {
       id: 'Aurum Vale GoldLungs/Burrs',
@@ -24,6 +30,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '果実を食べる',
           cn: '吃果实',
           ko: '열매 먹기',
+          tc: '吃果實',
         },
       },
     },

@@ -2217,6 +2217,50 @@ const data: WeatherRateType = {
       'Rain',
     ],
   },
+  172: {
+    'rates': [
+      20,
+      80,
+      100,
+    ],
+    'weathers': [
+      'Clouds',
+      'Fair Skies',
+      'Clear Skies',
+    ],
+  },
+  173: {
+    'rates': [
+      45,
+      60,
+      75,
+      92,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
+  },
+  174: {
+    'rates': [
+      50,
+      65,
+      80,
+      95,
+      100,
+    ],
+    'weathers': [
+      'Fair Skies',
+      'Clouds',
+      'Fog',
+      'Rain',
+      'Showers',
+    ],
+  },
 };
 
 export default data;

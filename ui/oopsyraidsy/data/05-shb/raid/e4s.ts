@@ -39,11 +39,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E4S Fault Line Collect',
       type: 'StartsUsing',
       netRegex: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
-      netRegexDe: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
-      netRegexFr: NetRegexes.startsUsing({ id: '411E', source: 'Titan' }),
-      netRegexJa: NetRegexes.startsUsing({ id: '411E', source: 'タイタン' }),
-      netRegexCn: NetRegexes.startsUsing({ id: '411E', source: '泰坦' }),
-      netRegexKo: NetRegexes.startsUsing({ id: '411E', source: '타이탄' }),
       run: (data, matches) => {
         data.faultLineTarget = matches.target;
       },
@@ -65,8 +60,41 @@ const triggerSet: OopsyTriggerSet<Data> = {
             ja: '突進に当たる',
             cn: '被碾了',
             ko: '돌진 맞음',
+            tc: '被碾了',
           },
         };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Titan': 'Titan',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Titan': 'Titan',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Titan': 'タイタン',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Titan': '泰坦',
+      },
+    },
+    {
+      'locale': 'ko',
+      'replaceSync': {
+        'Titan': '타이탄',
       },
     },
   ],

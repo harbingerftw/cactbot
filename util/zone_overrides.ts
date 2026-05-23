@@ -61,6 +61,8 @@ const _SYNTHETIC_IDS: NameKeyToTerritoryId = {
   'TheSingularityReactorUnreal': 1175,
   'TheJadeStoaUnreal': 1239,
   'HellsKierUnreal': 1272,
+  'TheWreathOfSnakesUnreal': 1302,
+  'TsukuyomisPainUnreal': 1318,
   // rename to something friendly/useful
   'TheMaskedCarnivale': 796,
   // 6.2 revamp
@@ -95,6 +97,12 @@ const _SYNTHETIC_IDS: NameKeyToTerritoryId = {
   'TheBorderlandRuinsSecure71': 376,
   // 7.3 revamp
   'CuttersCry72': 170,
+  // 7.4 revamp
+  'DzemaelDarkhold73': 171,
+  'TheAurumVale73': 172,
+  // 7.5 revamp
+  'TheDuskVigil74': 434,
+  'ShisuiOfTheVioletTides74': 616,
 };
 
 // This will override the data-sourced ContentType with our own value.
@@ -114,6 +122,7 @@ const _KNOWN_COLLISIONS: NameKeyToTerritoryIds = {
   'LeapOfFaith': [792, 899, 1098],
   'OceanFishing': [900, 1163],
   'SleepNowInSapphire': [925, 926],
+  'AirForceOne': [832, 1335],
 };
 
 // In theory, we shouldn't include zones in our output when we cannot determine
@@ -292,7 +301,38 @@ const _SYNTHETIC_ZONE_INFO: ZoneInfoType = {
     'sizeFactor': 400,
     'weatherRate': 98,
   },
-
+  1302: {
+    'contentType': 4,
+    'exVersion': 5,
+    'name': {
+      'cn': '青龙幻巧战',
+      'de': 'Traumprüfung - Seiryu',
+      'en': 'The Wreath of Snakes (Unreal)',
+      'fr': 'L\'Îlot des Amertumes (irréel)',
+      'ja': '幻青龍征魂戦',
+      'ko': '환 청룡 토벌전',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 99,
+  },
+  1318: {
+    'contentType': 4,
+    'exVersion': 5,
+    'name': {
+      'cn': '月读幻巧战',
+      'de': 'Traumprüfung - Tsukuyomi',
+      'en': 'Tsukuyomi\'s Pain (Unreal)',
+      'fr': 'Castrum Fluminis (irréel)',
+      'ja': '幻ツクヨミ討滅戦',
+      'ko': '환 츠쿠요미 토벌전',
+    },
+    'offsetX': -100,
+    'offsetY': -100,
+    'sizeFactor': 400,
+    'weatherRate': 0,
+  },
   // 6.2 updates - content removed/reworked
   143: {
     'contentType': 4,
@@ -700,6 +740,74 @@ const _SYNTHETIC_ZONE_INFO: ZoneInfoType = {
     },
     'offsetX': 0,
     'offsetY': 0,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
+  // 7.4 updates - content removed/reworked
+  171: {
+    'contentType': 2,
+    'exVersion': 0,
+    'name': {
+      'cn': '(7.3)山中战线泽梅尔要塞',
+      'de': '(7.3)Die Feste Dzemael',
+      'en': '(7.3)Dzemael Darkhold',
+      'fr': '(7.3)La Forteresse de Dzemael',
+      'ja': '(7.3)掃討作戦 ゼーメル要塞',
+      'ko': '(7.3)제멜 요새',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
+  172: {
+    'contentType': 2,
+    'exVersion': 0,
+    'name': {
+      'cn': '(7.3)毒雾洞窟黄金谷',
+      'de': '(7.3)Goldklamm',
+      'en': '(7.3)The Aurum Vale',
+      'fr': '(7.3)Le Val d\'Aurum',
+      'ja': '(7.3)霧中行軍 オーラムヴェイル',
+      'ko': '(7.3)금빛 골짜기',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 200,
+    'weatherRate': 0,
+  },
+  // 7.5 updates - content removed/reworked
+  434: {
+    'contentType': 2,
+    'exVersion': 1,
+    'name': {
+      'cn': '(7.4)冰雪废堡暮卫塔',
+      'de': '(7.4)Abendrot-Wacht',
+      'en': '(7.4)The Dusk Vigil',
+      'fr': '(7.4)Le Vigile du Crépuscule',
+      'ja': '(7.4)廃砦捜索 ダスクヴィジル',
+      'ko': '(7.4)어스름 요새',
+      'tc': '(7.4)冰雪廢堡暮衛塔',
+    },
+    'offsetX': 0,
+    'offsetY': 0,
+    'sizeFactor': 200,
+    'weatherRate': 42,
+  },
+  616: {
+    'contentType': 2,
+    'exVersion': 2,
+    'name': {
+      'cn': '(7.4)海底宫殿紫水宫',
+      'de': '(7.4)Shisui',
+      'en': '(7.4)Shisui of the Violet Tides',
+      'fr': '(7.4)Le Palais aux Marées violettes',
+      'ja': '(7.4)海底宮殿 紫水宮',
+      'ko': '(7.4)시스이 궁',
+      'tc': '(7.4)海底宮殿紫水宮',
+    },
+    'offsetX': 0,
+    'offsetY': 35,
     'sizeFactor': 200,
     'weatherRate': 0,
   },

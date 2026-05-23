@@ -14,7 +14,7 @@ const github = require('@actions/github');
 const babelParser = require('recast/parsers/babel');
 const { HttpClient } = require('@actions/http-client');
 
-const validLanguages = ['cn', 'de', 'ja', 'fr', 'ko'];
+const validLanguages = ['cn', 'de', 'ja', 'fr', 'ko', 'tc'];
 const langToLabel = (lang) => `💬${lang}`;
 
 // Only the first match applies.
@@ -253,7 +253,10 @@ const getTimelineReplaceChanges = (changedFiles) => {
   const s = new Set();
 
   changedFiles.forEach((file) => {
-    if (!file.filename.startsWith('ui/raidboss/data/'))
+    if (
+      !file.filename.startsWith('ui/raidboss/data/') &&
+      !file.filename.startsWith('ui/oopsyraidsy/data/')
+    )
       return;
 
     if (path.extname(file.filename) === '.js') {

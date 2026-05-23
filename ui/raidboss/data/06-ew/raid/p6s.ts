@@ -100,6 +100,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '2人同時タンク強攻撃',
           cn: '分散死刑',
           ko: '따로맞는 탱버',
+          tc: '分散死刑',
         },
       },
     },
@@ -386,6 +387,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir1} / ${dir2}',
           cn: '${dir1} / ${dir2}',
           ko: '${dir1} / ${dir2}',
+          tc: '${dir1} / ${dir2}',
         },
         single: {
           en: '${dir1}',
@@ -394,6 +396,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir1}',
           cn: '${dir1}',
           ko: '${dir1}',
+          tc: '${dir1}',
         },
         poly6: {
           en: '${dir1}: ${dir2} / ${dir3}',
@@ -402,6 +405,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir1}: ${dir2} / ${dir3}',
           cn: '${dir1}: ${dir2} / ${dir3}',
           ko: '${dir1}: ${dir2} / ${dir3}',
+          tc: '${dir1}: ${dir2} / ${dir3}',
         },
         left: {
           en: 'Left (Wing Side)',
@@ -410,6 +414,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '左 (翼)',
           cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
+          tc: '左 (翅膀側)',
         },
         right: {
           en: 'Right (Snake Side)',
@@ -418,6 +423,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '右 (蛇)',
           cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
+          tc: '右 (蛇側)',
         },
         insideWest: {
           en: 'Inside West',
@@ -426,6 +432,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側 西',
           cn: '内侧 左 ',
           ko: '안 서쪽',
+          tc: '內側 西',
         },
         insideEast: {
           en: 'Inside East',
@@ -434,6 +441,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側 東',
           cn: '内侧 右',
           ko: '안 동쪽',
+          tc: '內側 東',
         },
         outsideWest: {
           en: 'Outside West',
@@ -442,6 +450,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外側 西',
           cn: '外侧 左 ',
           ko: '바깥 서쪽',
+          tc: '外側 西',
         },
         outsideEast: {
           en: 'Outside East',
@@ -450,6 +459,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外側 東',
           cn: '外侧 右',
           ko: '바깥 동쪽',
+          tc: '外側 東',
         },
         insideNW: {
           en: 'Inside NW',
@@ -458,6 +468,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側 北西',
           cn: '内侧 左上',
           ko: '안 북서쪽',
+          tc: '內側 西北',
         },
         insideNE: {
           en: 'Inside NE',
@@ -466,6 +477,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側 北東',
           cn: '内侧 右上',
           ko: '안 북동쪽',
+          tc: '內側 東北',
         },
         insideSE: {
           en: 'Inside SE',
@@ -474,6 +486,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側 南東',
           cn: '内侧 右下',
           ko: '안 남동쪽',
+          tc: '內側 東南',
         },
         insideSW: {
           en: 'Inside SW',
@@ -482,6 +495,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側 南西',
           cn: '内侧 左下',
           ko: '안 남서쪽',
+          tc: '內側 西南',
         },
         outsideNNW: {
           en: 'Outside NNW',
@@ -490,6 +504,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '1列 西の内側',
           cn: '外侧 上偏左',
           ko: '바깥 북쪽 왼칸',
+          tc: '外側 北偏西',
         },
         outsideNNE: {
           en: 'Outside NNE',
@@ -498,6 +513,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '1列 東の内側',
           cn: '外侧 上偏右',
           ko: '바깥 북쪽 오른칸',
+          tc: '外側 北偏東',
         },
         outsideSSW: {
           en: 'Outside SSW',
@@ -506,6 +522,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '4列 西の内側',
           cn: '外侧 下偏左',
           ko: '바깥 남쪽 왼칸',
+          tc: '外側 南偏西',
         },
         outsideSSE: {
           en: 'Outside SSE',
@@ -514,6 +531,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '4列 東の内側',
           cn: '外侧 下偏右',
           ko: '바깥 남쪽 오른칸',
+          tc: '外側 南偏東',
         },
         outsideWNW: {
           en: 'Outside WNW',
@@ -522,6 +540,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '2列 西の外側',
           cn: '外侧 左偏上',
           ko: '바깥 서쪽 위칸',
+          tc: '外側 西偏北',
         },
         outsideENE: {
           en: 'Outside ENE',
@@ -530,6 +549,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '2列 東の外側',
           cn: '外侧 右偏上',
           ko: '바깥 동쪽 위칸',
+          tc: '外側 東偏北',
         },
         outsideWSW: {
           en: 'Outside WSW',
@@ -538,6 +558,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '3列 西の外側',
           cn: '外侧 左偏下',
           ko: '바깥 서쪽 아래칸',
+          tc: '外側 西偏南',
         },
         outsideESE: {
           en: 'Outside ESE',
@@ -546,6 +567,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '3列 東の外側',
           cn: '外侧 右偏下',
           ko: '바깥 동쪽 아래칸',
+          tc: '外側 東偏南',
         },
         cornerNW: {
           en: 'NW Corner',
@@ -554,6 +576,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '北西 隅',
           cn: '左上角',
           ko: '북서쪽 구석',
+          tc: '西北角',
         },
         cornerNE: {
           en: 'NE Corner',
@@ -562,6 +585,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '北東 隅',
           cn: '右上角',
           ko: '북동쪽 구석',
+          tc: '東北角',
         },
         cornerSE: {
           en: 'SE Corner',
@@ -570,6 +594,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '南東 隅',
           cn: '右下角',
           ko: '남동쪽 구석',
+          tc: '東南角',
         },
         cornerSW: {
           en: 'SW Corner',
@@ -578,6 +603,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '南西 隅',
           cn: '左下角',
           ko: '남서쪽 구석',
+          tc: '西南角',
         },
       },
     },
@@ -587,11 +613,8 @@ const triggerSet: TriggerSet<Data> = {
       type: 'StartsUsing',
       netRegex: { id: ['7869', '786B'], source: 'Hegemone', capture: false },
       condition: (data) => !data.secondExocleavers,
-      alertText: (_data, _matches, output) => output.healerGroups!(),
+      response: Responses.healerGroups('alert'),
       run: (data) => data.secondExocleavers = true,
-      outputStrings: {
-        healerGroups: Outputs.healerGroups,
-      },
     },
     {
       id: 'P6S Exocleaver Move',
@@ -609,10 +632,7 @@ const triggerSet: TriggerSet<Data> = {
       // are handled by P6S Exocleaver Healer Groups.
       condition: (data) => data.polyInstance === 3,
       suppressSeconds: 1,
-      alertText: (_data, _matches, output) => output.healerGroups!(),
-      outputStrings: {
-        healerGroups: Outputs.healerGroups,
-      },
+      response: Responses.healerGroups('alert'),
     },
     {
       id: 'P6S Choros Ixou Front Back',
@@ -632,6 +652,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '縦へ (${tile})',
           cn: '去前/后 (${tile})',
           ko: '앞/뒤로 (${tile})',
+          tc: '去前/後 (${tile})',
         },
       },
     },
@@ -653,6 +674,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '横へ (${tile})',
           cn: '去两侧 (${tile})',
           ko: '옆으로 (${tile})',
+          tc: '去兩側 (${tile})',
         },
       },
     },
@@ -704,6 +726,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '自分: ${num}番',
           cn: '#${num}',
           ko: '${num}번째',
+          tc: '#${num}',
         },
       },
     },
@@ -725,6 +748,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${num}番',
           cn: '${num}',
           ko: '${num}',
+          tc: '${num}',
         },
       },
     },
@@ -762,6 +786,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '頭割り',
           cn: '集合放月环',
           ko: '도넛 장판, 쉐어',
+          tc: '集合放月環',
         },
         spreadCorner: {
           en: 'Spread Corner',
@@ -770,6 +795,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '隅で散会',
           cn: '去角落',
           ko: '구석으로 산개',
+          tc: '去角落',
         },
       },
     },
@@ -786,6 +812,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ゆか誘導',
           cn: '诱导放圈',
           ko: '장판 유도',
+          tc: '誘導放圈',
         },
       },
     },
@@ -846,6 +873,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir}, ${bait}',
           cn: '${dir}, ${bait}',
           ko: '${dir}, ${bait}',
+          tc: '${dir}, ${bait}',
         },
         left: {
           en: 'Left (Wing Side)',
@@ -854,6 +882,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '左 (翼)',
           cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
+          tc: '左 (翅膀側)',
         },
         right: {
           en: 'Right (Snake Side)',
@@ -862,6 +891,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '右 (蛇)',
           cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
+          tc: '右 (蛇側)',
         },
         firstBait: {
           en: 'First Bait (20s)',
@@ -870,6 +900,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '1番目 (20秒)',
           cn: '1组引导 (20秒)',
           ko: '유도 1번 (20초)',
+          tc: '1組引導 (20秒)',
         },
         secondBait: {
           en: 'Second Bait (8s)',
@@ -878,6 +909,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '2番目 (8秒)',
           cn: '2组引导 (8秒)',
           ko: '유도 2번 (8초)',
+          tc: '2組引導 (8秒)',
         },
         thirdBait: {
           en: 'Third Bait (12s)',
@@ -886,6 +918,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '3番目 (12秒)',
           cn: '3组引导 (12秒)',
           ko: '유도 3번 (12초)',
+          tc: '3組引導 (12秒)',
         },
         fourthBait: {
           en: 'Fourth Bait (16s)',
@@ -894,6 +927,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '4番目 (16秒)',
           cn: '4组引导 (16秒)',
           ko: '유도 4번 (16초)',
+          tc: '4組引導 (16秒)',
         },
       },
     },
@@ -914,6 +948,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側へ (1番目)',
           cn: '内侧引导 (第1组)',
           ko: '안으로 (유도 1번)',
+          tc: '內側引導 (第1組)',
         },
       },
     },
@@ -959,6 +994,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側へ (2番目)',
           cn: '内侧引导 (第2组)',
           ko: '안으로 (유도 2번)',
+          tc: '內側引導 (第2組)',
         },
         inThirdBait: {
           en: 'In (Third Bait)',
@@ -967,6 +1003,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側へ (3番目)',
           cn: '内侧引导 (第3组)',
           ko: '안으로 (유도 3번)',
+          tc: '內側引導 (第3組)',
         },
         inFourthBait: {
           en: 'In (Fourth Bait)',
@@ -975,6 +1012,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内側へ (4番目)',
           cn: '内侧引导 (第4组)',
           ko: '안으로 (유도 4번)',
+          tc: '內側引導 (第4組)',
         },
       },
     },
@@ -1005,6 +1043,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '左 (翼)',
           cn: '左 (翅膀侧)',
           ko: '왼쪽 (날개쪽)',
+          tc: '左 (翅膀側)',
         },
         right: {
           en: 'Right (Snake Side)',
@@ -1013,6 +1052,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '右 (蛇)',
           cn: '右 (蛇侧)',
           ko: '오른쪽 (뱀쪽)',
+          tc: '右 (蛇側)',
         },
       },
     },
@@ -1039,6 +1079,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '口からおくび',
           cn: '前方扇形',
           ko: '전방 부채꼴 장판',
+          tc: '前方扇形',
         },
         backwardCleave: {
           en: 'Rear Cleave',
@@ -1047,6 +1088,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '尻からおなら',
           cn: '背后扇形',
           ko: '후방 부채꼴 장판',
+          tc: '背後扇形',
         },
       },
     },
@@ -1068,6 +1110,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '後で口からおくび',
           cn: '稍后 前方扇形',
           ko: '곧 전방 부채꼴 장판',
+          tc: '稍後 前方扇形',
         },
         backwardCleave: {
           en: 'Rear Cleave, for later',
@@ -1076,6 +1119,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '後で尻からおなら',
           cn: '稍后 背后扇形',
           ko: '곧 후방 부채꼴 장판',
+          tc: '稍後 背後扇形',
         },
       },
     },
@@ -1112,6 +1156,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散会 ${dir1}',
           cn: '分散 ${dir1}',
           ko: '산개 ${dir1}',
+          tc: '分散 ${dir1}',
         },
         stackSide: {
           en: 'Stack ${dir1}',
@@ -1120,6 +1165,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '頭割り ${dir1}',
           cn: '分摊 ${dir1}',
           ko: '쉐어 ${dir1}',
+          tc: '分攤 ${dir1}',
         },
       },
     },
@@ -1247,6 +1293,37 @@ const triggerSet: TriggerSet<Data> = {
         'Synergy': '协同',
         'Transmission': '寄生传染',
         'Unholy Darkness': '黑暗神圣',
+      },
+    },
+    {
+      'locale': 'tc',
+      'replaceSync': {
+        'Hegemone': '赫革摩涅',
+        'Parasitos': '寄生生物',
+      },
+      'replaceText': {
+        'Aetherial Exchange': '乙太交換',
+        'Aetheric Polyominoid': '乙太方陣',
+        'Aetheronecrosis': '魔活細胞',
+        'Cachexia': '惡病質',
+        'Chelic Claw': '爪擊',
+        'Choros Ixou': '寄生之舞',
+        'Dark Ashes': '冥灰',
+        'Dark Dome': '暗天頂',
+        'Dark Sphere': '黑暗球',
+        'Dual Predation': '甲軟雙擊',
+        'Exchange Of Agonies': '極苦交換',
+        'Exocleaver': '外劈',
+        'Hemitheos\'s Dark IV': '半神冥暗',
+        'Pathogenic Cells': '軟體細胞流',
+        'Polyominoid Sigma': '乙太方陣Σ',
+        'Polyominous Dark IV': '多連方冥暗',
+        '(?<!Dual )Predation': '甲軟雙擊',
+        'Ptera Ixou': '寄生之翼',
+        'Reek Havoc': '噴氣',
+        'Synergy': '協同',
+        'Transmission': '寄生傳染',
+        'Unholy Darkness': '黑暗神聖',
       },
     },
     {

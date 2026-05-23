@@ -8,10 +8,6 @@ import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
 import { TriggerSet } from '../../../../../types/trigger';
 
-// TODO:
-// Party adds phase stuff?
-// Individual adds phase mechs for non-healer?
-
 export type ReapingSafeDir = 'out' | 'in' | 'mid' | 'sides';
 const reapingHeadmarkerMap: { [id: string]: ReapingSafeDir } = {
   '025C': 'out',
@@ -112,6 +108,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '手の誘導',
           cn: '引导手',
           ko: '손 유도',
+          tc: '引導手',
         },
       },
     },
@@ -134,6 +131,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${mid} => ${side}',
           cn: '${mid} => ${side}',
           ko: '${mid} => ${side}',
+          tc: '${mid} => ${side}',
         },
       },
     },
@@ -155,6 +153,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '光 左 => 散開',
           cn: '光左 => 分散',
           ko: '빛 서쪽 => 산개',
+          tc: '光左 => 分散',
         },
         lightEast: {
           en: 'Light East => Spread',
@@ -163,6 +162,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '光 右 => 散開',
           cn: '光右 => 分散',
           ko: '빛 동쪽 => 산개',
+          tc: '光右 => 分散',
         },
       },
     },
@@ -212,6 +212,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '次は ${dir}',
           cn: '储存 ${dir}',
           ko: '${dir} 저장',
+          tc: '儲存 ${dir}',
         },
       },
     },
@@ -246,6 +247,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} + ${mech}',
           cn: '${dir} + ${mech}',
           ko: '${dir} + ${mech}',
+          tc: '${dir} + ${mech}',
         },
       },
     },
@@ -263,6 +265,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '手を外に捨てる => 次の手を誘導',
           cn: '放手 => 引导手',
           ko: '손 설치 => 손 유도',
+          tc: '放手 => 引導手',
         },
       },
     },
@@ -297,6 +300,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '中央 => ×字散開',
           cn: '引导黄圈 => 叉字',
           ko: '장판 유도 => X자',
+          tc: '引導黃圈 => 叉字',
         },
       },
     },
@@ -344,6 +348,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'スロウを解除',
           cn: '康复减速',
           ko: '둔화 해제',
+          tc: '康復減速',
         },
       },
     },
@@ -413,6 +418,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '中央列',
           cn: '中间行',
           ko: '가운데 줄',
+          tc: '中間行',
         },
         north: {
           en: 'North Row',
@@ -421,6 +427,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '北列（上）',
           cn: '第一行',
           ko: '북쪽 줄',
+          tc: '第一行',
         },
         south: {
           en: 'South Row',
@@ -429,6 +436,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '南列（下）',
           cn: '第三行',
           ko: '남쪽 줄',
+          tc: '第三行',
         },
         text: {
           en: '${row} + ${spread}',
@@ -437,6 +445,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${row} + ${spread}',
           cn: '${row} + ${spread}',
           ko: '${row} + ${spread}',
+          tc: '${row} + ${spread}',
         },
       },
     },
@@ -454,6 +463,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '手を誘導 => 回避',
           cn: '引导手 => 躲开',
           ko: '손 유도 => 피하기',
+          tc: '引導手 => 躲開',
         },
       },
     },
@@ -557,6 +567,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir1} => ${dir2} => ${dir3} => ${dir4} + ${mech}',
           cn: '${dir1} => ${dir2} => ${dir3} => ${dir4} + ${mech}',
           ko: '${dir1} => ${dir2} => ${dir3} => ${dir4} + ${mech}',
+          tc: '${dir1} => ${dir2} => ${dir3} => ${dir4} + ${mech}',
         },
       },
     },
@@ -645,6 +656,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '手を待つ => ${dir}',
           cn: '等手 => ${dir}',
           ko: '손 기다리기 => ${dir}',
+          tc: '等手 => ${dir}',
         },
         lean: {
           en: '${dir}, lean ${to}',
@@ -653,6 +665,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir}, ${to}に寄る',
           cn: '${dir}, 靠 ${to}',
           ko: '${dir}, ${to}쪽으로 기대기',
+          tc: '${dir}, 靠 ${to}',
         },
         dodge: {
           en: '${dir} => Dodge Hand',
@@ -661,6 +674,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} => 手を避ける',
           cn: '${dir} => 躲手',
           ko: '${dir} => 손 피하기',
+          tc: '${dir} => 躲手',
         },
       },
     },
@@ -677,6 +691,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '最初の塔踏み位置へ移動',
           cn: '多人塔预站位',
           ko: '다인 탑 미리 자리잡기',
+          tc: '多人塔預站位',
         },
       },
     },
@@ -692,10 +707,10 @@ const triggerSet: TriggerSet<Data> = {
       type: 'Ability',
       netRegex: { id: 'AF13', capture: true },
       condition: (data, matches) =>
-        Conditions.targetIsYou()(data, matches) && data.macabreTowerCount < 5,
+        Conditions.targetIsYou()(data, matches) && data.macabreTowerCount < 4,
       delaySeconds: 4,
       alertText: (data, _matches, output) => {
-        if (data.role === 'tank' && data.macabreTowerCount > 2) {
+        if (data.role === 'tank' && data.macabreTowerCount > 1) {
           // Tanks deal with buster after 2nd tower
           return;
         }
@@ -709,6 +724,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '次の塔を踏む',
           cn: '踩下一个塔',
           ko: '다음 탑 밟기',
+          tc: '踩下一個塔',
         },
         tankBuster: Outputs.tankBuster,
       },
@@ -731,8 +747,19 @@ const triggerSet: TriggerSet<Data> = {
         'Necron': 'Ewig(?:e|er|es|en) Dunkel',
       },
       'replaceText': {
+        '\\(cast\\)': '(wirken)',
+        '\\(damage\\)': '(Schaden)',
+        '\\(intercards\\)': '(Interkardinal)',
+        '\\(line\\)': '(Linie)',
+        '\\(lines\\)': '(Linien)',
+        '\\(puddle\\)': '(Fläche)',
+        '\\(puddles\\)': '(Flächen)',
+        '\\(spread\\)': '(verteilen)',
+        '\\(tower\\)': '(Turm)',
+        'Add Spawn': 'Add erscheint',
         'Aetherblight': 'Ätherische Verderbnis',
         'Blue Shockwave': 'Blaue Schockwelle',
+        'Chilling Fingers': 'Klauen des Todes',
         'Choking Grasp': 'Würgegriff',
         'Circle of Lives': 'Lebenszirkel',
         'Cold Grip': 'Dunkelhieb',
@@ -746,6 +773,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mass Macabre': 'Massenfurcht',
         'Memento Mori': 'Memento Mori',
         'Muted Struggle': 'Stiller Kampf',
+        'Necrotic Pulse': 'Nekrotischer Impuls',
         'Neutron Ring': 'Neutronenring',
         'Relentless Reaping': 'Andauernde Labung',
         'Shock(?!wave)': 'Entladung',
@@ -753,6 +781,7 @@ const triggerSet: TriggerSet<Data> = {
         'Smite of Gloom': 'Schlag der Schwermut',
         'Soul Reaping': 'Seelenlabung',
         'Specter of Death': 'Gesandte des Todes',
+        'Spreading Fear': 'Angst verbreiten',
         'The End\'s Embrace': 'Letzte Umarmung',
         'The Fourth Season': 'Vierte Saison',
         'The Second Season': 'Zweite Saison',
@@ -761,6 +790,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Azure Aether': 'sphère d\'énergie bleue',
         'Beckoning Hands': 'grand attrape-mort',
@@ -779,6 +809,7 @@ const triggerSet: TriggerSet<Data> = {
         '\\(tower\\)': '(Tour)',
         'Aetherblight': 'Voie bleue',
         'Blue Shockwave': 'Onde bleue',
+        'Chilling Fingers': 'Enroulement',
         'Choking Grasp': 'Pression écrasante',
         'Circle of Lives': 'Sphères d\'énergie bleues',
         'Cold Grip': 'Fouet létal',
@@ -792,6 +823,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mass Macabre': 'Panique collective',
         'Memento Mori': 'Memento mori',
         'Muted Struggle': 'Frappe écrasante',
+        'Necrotic Pulse': 'Déchirement',
         'Neutron Ring': 'Anneau de neutrons',
         'Relentless Reaping': 'Âmes bleues enchaînées',
         'Shock(?!wave)': 'Décharge électrostatique',
@@ -799,6 +831,7 @@ const triggerSet: TriggerSet<Data> = {
         'Smite of Gloom': 'Coup des ténèbres',
         'Soul Reaping': 'Âme bleue',
         'Specter of Death': 'Agrippe-morts',
+        'Spreading Fear': 'Désagrégement',
         'The End\'s Embrace': 'Aile guide',
         'The Fourth Season': 'Motifs bleus quadruplés',
         'The Second Season': 'Motifs bleus doublés',
@@ -817,6 +850,7 @@ const triggerSet: TriggerSet<Data> = {
       'replaceText': {
         'Aetherblight': '青の波動',
         'Blue Shockwave': '青の衝撃',
+        'Chilling Fingers': 'まとわりつく',
         'Choking Grasp': '圧し潰す',
         'Circle of Lives': '青の輪波',
         'Cold Grip': '暗き死の腕',
@@ -830,6 +864,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mass Macabre': '集団恐慌',
         'Memento Mori': 'メメント・モリ',
         'Muted Struggle': '叩き潰す',
+        'Necrotic Pulse': '引き裂く',
         'Neutron Ring': 'ニュートンリング',
         'Relentless Reaping': '連なる青き魂',
         'Shock(?!wave)': '放電',
@@ -837,6 +872,7 @@ const triggerSet: TriggerSet<Data> = {
         'Smite of Gloom': '闇の一撃',
         'Soul Reaping': '青き魂',
         'Specter of Death': '闇の巨腕',
+        'Spreading Fear': '撒き散らす',
         'The End\'s Embrace': '導きの翼',
         'The Fourth Season': '青の式波・四重',
         'The Second Season': '青の式波・二重',
@@ -861,14 +897,16 @@ const triggerSet: TriggerSet<Data> = {
         '\\(puddles\\)': '(圈)',
         '\\(spread\\)': '(分散)',
         '\\(tower\\)': '(塔)',
+        'Add Spawn': '小怪生成',
         'Aetherblight': '青之波动',
         'Blue Shockwave': '青之冲击',
+        'Chilling Fingers': '死缠',
         'Choking Grasp': '压溃',
         'Circle of Lives': '青之环波',
         'Cold Grip': '暗之死腕',
         'Crop Rotation': '灵魂轮转',
         'Darkness of Eternity': '永远之暗',
-        'Existential Dread': '万死的憎恶',
+        'Existential Dread': '暗气流',
         'Fear of Death': '死之恐惧',
         'Fourfold Blight': '青之四重波',
         'Grand Cross': '大十字',
@@ -876,6 +914,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mass Macabre': '群体恐慌',
         'Memento Mori': '死亡警告',
         'Muted Struggle': '击溃',
+        'Necrotic Pulse': '撕破',
         'Neutron Ring': '中子环',
         'Relentless Reaping': '青之连魂',
         'Shock(?!wave)': '放电',
@@ -883,10 +922,58 @@ const triggerSet: TriggerSet<Data> = {
         'Smite of Gloom': '黑暗一击',
         'Soul Reaping': '青魂',
         'Specter of Death': '黑暗巨腕',
+        'Spreading Fear': '散布',
         'The End\'s Embrace': '引导之翼',
         'The Fourth Season': '四重青之波潮',
         'The Second Season': '二重青之波潮',
         'Twofold Blight': '青之二重波',
+      },
+    },
+    {
+      'locale': 'tc',
+      'missingTranslations': true,
+      'replaceSync': {
+        // 'Azure Aether': '', // FIXME '青之魂块'
+        // 'Beckoning Hands': '', // FIXME '邀死之手'
+        // 'Icy Hands': '', // FIXME '招死之手'
+        // 'Necron': '', // FIXME '永远之暗'
+      },
+      'replaceText': {
+        // '\\(cast\\)': '', // FIXME '(咏唱)'
+        // '\\(damage\\)': '', // FIXME '(伤害)'
+        // '\\(intercards\\)': '', // FIXME '(斜角)'
+        // '\\(line\\)': '', // FIXME '(直线)'
+        // '\\(lines\\)': '', // FIXME '(直线)'
+        // '\\(puddle\\)': '', // FIXME '(圈)'
+        // '\\(puddles\\)': '', // FIXME '(圈)'
+        // '\\(spread\\)': '', // FIXME '(分散)'
+        // '\\(tower\\)': '', // FIXME '(塔)'
+        // 'Aetherblight': '', // FIXME '青之波动'
+        // 'Blue Shockwave': '', // FIXME '青之冲击'
+        // 'Choking Grasp': '', // FIXME '压溃'
+        // 'Circle of Lives': '', // FIXME '青之环波'
+        // 'Cold Grip': '', // FIXME '暗之死腕'
+        // 'Crop Rotation': '', // FIXME '灵魂轮转'
+        // 'Darkness of Eternity': '', // FIXME '永远之暗'
+        'Existential Dread': '萬死的憎惡',
+        // 'Fear of Death': '', // FIXME '死之恐惧'
+        // 'Fourfold Blight': '', // FIXME '青之四重波'
+        'Grand Cross': '大十字',
+        // 'Inevitability': '', // FIXME '死之泛滥'
+        // 'Mass Macabre': '', // FIXME '群体恐慌'
+        // 'Memento Mori': '', // FIXME '死亡警告'
+        // 'Muted Struggle': '', // FIXME '击溃'
+        // 'Neutron Ring': '', // FIXME '中子环'
+        // 'Relentless Reaping': '', // FIXME '青之连魂'
+        'Shock(?!wave)': '放電',
+        // '(?<!Blue )Shockwave': '', // FIXME '青之冲击'
+        'Smite of Gloom': '黑暗一擊',
+        // 'Soul Reaping': '', // FIXME '青魂'
+        // 'Specter of Death': '', // FIXME '黑暗巨腕'
+        // 'The End\'s Embrace': '', // FIXME '引导之翼'
+        // 'The Fourth Season': '', // FIXME '四重青之波潮'
+        // 'The Second Season': '', // FIXME '二重青之波潮'
+        // 'Twofold Blight': '', // FIXME '青之二重波'
       },
     },
     {
@@ -905,8 +992,10 @@ const triggerSet: TriggerSet<Data> = {
         '\\(puddles?\\)': '(장판)',
         '\\(spread\\)': '(산개)',
         '\\(tower\\)': '(탑)',
+        'Add Spawn': '쫄 등장',
         'Aetherblight': '푸른 파동',
         'Blue Shockwave': '푸른 충격',
+        'Chilling Fingers': '들러붙기',
         'Choking Grasp': '짓누르기',
         'Circle of Lives': '푸른 고리 파동',
         'Cold Grip': '검은 죽음의 팔',
@@ -920,6 +1009,7 @@ const triggerSet: TriggerSet<Data> = {
         'Mass Macabre': '집단 공황',
         'Memento Mori': '메멘토 모리',
         'Muted Struggle': '찍어누르기',
+        'Necrotic Pulse': '찢어버리기',
         'Neutron Ring': '중성자 고리',
         'Relentless Reaping': '연속 푸른 영혼',
         'Shock(?!wave)': '방전',
@@ -927,6 +1017,7 @@ const triggerSet: TriggerSet<Data> = {
         'Smite of Gloom': '어둠의 일격',
         'Soul Reaping': '푸른 영혼',
         'Specter of Death': '거대한 어둠의 팔',
+        'Spreading Fear': '퍼뜨리기',
         'The End\'s Embrace': '인도의 날개',
         'The Fourth Season': '푸른 파동식: 사중',
         'The Second Season': '푸른 파동식: 이중',

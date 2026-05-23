@@ -3,7 +3,7 @@
 //   id: 'Some tankbuster',
 //   regex: Regexes.startsUsing({source: 'Ye Olde Bosse', id: '666'}),
 //   condition: Conditions.caresAboutMagical(data),
-//   response: Responses.tankbuster(),
+//   response: Responses.tankBuster(),
 // },
 //
 // Note: Breaking out the condition like this lets people override it if they
@@ -327,7 +327,9 @@ export const Responses = {
   aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.aoe),
   bigAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bigAoe),
   bleedAoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.bleedAoe),
+  hpTo1Aoe: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.hpTo1Aoe),
   spread: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.spread),
+  rolePositions: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.rolePositions),
   protean: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.protean),
   // for stack marker situations.
   stackMarker: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.stackMarker),
@@ -351,8 +353,13 @@ export const Responses = {
       },
     };
   },
+  stackInTower: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.stackInTower),
   stackMiddle: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.stackMiddle),
   doritoStack: (sev?: Severity) => staticResponse(defaultAlertText(sev), Outputs.doritoStack),
+  // for mechanics where you stack with your partner
+  stackPartner: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.stackPartner),
+  // for light party stacks (usually targeting both healers)
+  healerGroups: (sev?: Severity) => staticResponse(defaultInfoText(sev), Outputs.healerGroups),
   spreadThenStack: (sev?: Severity) => {
     return staticResponse(defaultAlertText(sev), Outputs.spreadThenStack);
   },

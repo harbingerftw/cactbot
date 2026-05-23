@@ -95,8 +95,10 @@ const triggerSet: TriggerSet<Data> = {
         knockbackFrom: {
           en: 'Knockback from ${dir}',
           de: 'Rückstoß von ${dir}',
+          fr: 'Poussée depuis ${dir}',
           cn: '从 ${dir} 击退',
           ko: '${dir}에서 넉백',
+          tc: '從 ${dir} 擊退',
         },
         dirN: Outputs.north,
         dirE: Outputs.east,
@@ -172,8 +174,10 @@ const triggerSet: TriggerSet<Data> = {
         cleanse: {
           en: 'Cleanse ${target}',
           de: 'Reinige ${target}',
+          fr: 'Guérison sur ${target}',
           cn: '康复 ${target}',
           ko: '${target} 에스나',
+          tc: '康復 ${target}',
         },
       },
     },
@@ -215,8 +219,10 @@ const triggerSet: TriggerSet<Data> = {
         avoidFlails: {
           en: 'Away from flails',
           de: 'Weg vom Flegel',
+          fr: 'Loin des fléaux',
           cn: '远离铁球',
           ko: '철퇴 피하기',
+          tc: '遠離鐵球',
         },
       },
     },
@@ -245,15 +251,20 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'Meso Terminal Executioners Death Penalty',
       type: 'GainsEffect',
-      netRegex: { effectId: '11F2', capture: true },
+      // The Doom effect ID applied changed from 11F2 in 7.3 to 1441 in 7.4
+      // Both IDs are kept to enable parsing older logs and for regions not
+      // yet on Patch 7.4
+      netRegex: { effectId: ['11F2', '1441'], capture: true },
       condition: (data) => data.CanCleanse(),
       alarmText: (_data, matches, output) => output.cleanseDoom!({ target: matches.target }),
       outputStrings: {
         cleanseDoom: {
           en: 'Cleanse ${target}',
           de: 'Reinige ${target}',
+          fr: 'Guérison sur ${target}',
           cn: '康复 ${target}',
           ko: '${target} 에스나',
+          tc: '康復 ${target}',
         },
       },
     },
@@ -344,8 +355,10 @@ const triggerSet: TriggerSet<Data> = {
         staticBombardment: {
           en: 'Go ${safe}; Avoid small AoE',
           de: 'Geh nach ${safe}; Vermeide kleine AoE',
+          fr: 'Allez ${safe} ; Évitez la petite AoE',
           cn: '前往 ${safe}; 避开小范围 AoE',
           ko: '${safe}로 이동; 작은 장판 피하기',
+          tc: '前往 ${safe}; 避開小範圍 AoE',
         },
         west: Outputs.west,
         east: Outputs.east,
@@ -381,8 +394,10 @@ const triggerSet: TriggerSet<Data> = {
         knockbackBombardment: {
           en: 'Knockback to ${safe}; Avoid AoE',
           de: 'Rückstoß nach ${safe}; Vermeide AoE',
+          fr: 'Poussée vers ${safe} ; Évitez l\'AoE',
           cn: '击退到 ${safe}; 避开 AoE',
           ko: '${safe}로 넉백; 장판 피하기',
+          tc: '擊退到 ${safe}; 避開 AoE',
         },
         northwest: Outputs.northwest,
         northeast: Outputs.northeast,
@@ -465,14 +480,18 @@ const triggerSet: TriggerSet<Data> = {
         leanLeft: {
           en: 'Front + Lean Left; or Southwest',
           de: 'Vorne + Links halten; oder Süd-Westen',
+          fr: 'Devant légèrement à gauche ; ou Sud-Ouest',
           cn: '前方 + 偏左; 或左下',
           ko: '앞 + 약간 왼쪽; 또는 남서',
+          tc: '前方 + 偏左; 或左下',
         },
         leanRight: {
           en: 'Front + Lean Right; or Southeast',
           de: 'Vorne + Rechts halten; oder Süd-Osten',
+          fr: 'Devant légèrement à droite ; ou Sud-Est',
           cn: '前方 + 偏右; 或右下',
           ko: '앞 + 약간 오른쪽; 또는 남동',
+          tc: '前方 + 偏右; 或右下',
         },
         dirNW: Outputs.northwest,
         dirNE: Outputs.northeast,
@@ -533,13 +552,13 @@ const triggerSet: TriggerSet<Data> = {
       'locale': 'fr',
       'missingTranslations': true,
       'replaceSync': {
-        'Bloody Headsman': 'mémoire du bourreau rouge',
-        'Bygone Aerostat': 'aérostat séculaire',
-        'Chirurgeon General': 'mémoire d\'un chef de clinique',
-        'Hooded Headsman': 'mémoire d\'un bourreau',
+        'Bloody Headsman': 'Mémoire du bourreau rouge',
+        'Bygone Aerostat': 'Aérostat séculaire',
+        'Chirurgeon General': 'Mémoire d\'un chef de clinique',
+        'Hooded Headsman': 'Mémoire d\'un bourreau',
         'Immortal Remains': 'Memoria populi',
-        'Pale Headsman': 'mémoire du bourreau jaune',
-        'Pestilent Headsman': 'mémoire du bourreau vert',
+        'Pale Headsman': 'Mémoire du bourreau jaune',
+        'Pestilent Headsman': 'Mémoire du bourreau vert',
       },
       'replaceText': {
         'Biochemical Front': 'Pulvérisation avant',
@@ -659,6 +678,53 @@ const triggerSet: TriggerSet<Data> = {
         'Sterile Sphere': '圆状散布',
         'Turmoil': '慌乱',
         'Will Breaker': '破碎弹',
+      },
+    },
+    {
+      'locale': 'tc',
+      'missingTranslations': true,
+      'replaceSync': {
+        // 'Bloody Headsman': '', // FIXME '某个绯红处刑人的记忆'
+        // 'Bygone Aerostat': '', // FIXME '旧日航空机'
+        // 'Chirurgeon General': '', // FIXME '某个医师长的记忆'
+        // 'Hooded Headsman': '', // FIXME '某个处刑人的记忆'
+        // 'Immortal Remains': '', // FIXME '某些人的记忆'
+        // 'Pale Headsman': '', // FIXME '某个黄褐处刑人的记忆'
+        // 'Pestilent Headsman': '', // FIXME '某个翠绿处刑人的记忆'
+      },
+      'replaceText': {
+        // '--hellmaker adds--': '', // FIXME '--焦热刑具出现--'
+        // '\\(active\\)': '', // FIXME '(生效)'
+        // '\\(cast\\)': '', // FIXME '(咏唱)'
+        // '\\(castbar\\)': '', // FIXME '(读条)'
+        // 'Biochemical Front': '', // FIXME '正面喷雾'
+        'Bombardment': '轟炸',
+        // 'Chopping Block': '', // FIXME '圆月断'
+        // 'Concentrated Dose': '', // FIXME '高压缩药弹'
+        // 'Death Penalty': '', // FIXME '死刑宣告'
+        // 'Dismemberment': '', // FIXME '斩足刃'
+        // 'Electray': '', // FIXME '雷质射线'
+        // 'Execution Wheel': '', // FIXME '月环断'
+        // 'Flaying Flail': '', // FIXME '断罪的铁球'
+        // 'Head-splitting Roar': '', // FIXME '处刑人的咆哮'
+        // 'Impression': '', // FIXME '印象'
+        // 'Keraunography': '', // FIXME '雷光'
+        // 'Lawless Pursuit': '', // FIXME '捉拿罪犯'
+        // 'Medicine Field': '', // FIXME '广域撒药'
+        // 'Memento': '', // FIXME '记忆重现'
+        // 'Memory of the Pyre': '', // FIXME '记忆爆炸'
+        // 'Memory of the Storm': '', // FIXME '记忆风暴'
+        // 'No Man\'s Land': '', // FIXME '启动装置'
+        // 'Peal of Judgment': '', // FIXME '断罪的雷剑'
+        // 'Pungent Aerosol': '', // FIXME '爆炸药液'
+        // 'Recollection': '', // FIXME '回忆'
+        // 'Relentless Torment': '', // FIXME '强连击'
+        // 'Sensory Deprivation': '', // FIXME '知觉扰乱药'
+        // 'Serial Torture': '', // FIXME '连续处刑'
+        // 'Shackles of Fate': '', // FIXME '铁链束缚'
+        // 'Sterile Sphere': '', // FIXME '圆状散布'
+        // 'Turmoil': '', // FIXME '慌乱'
+        // 'Will Breaker': '', // FIXME '破碎弹'
       },
     },
     {

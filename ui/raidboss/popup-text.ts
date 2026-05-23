@@ -30,6 +30,7 @@ import {
   ResponseOutput,
   TimelineField,
   TimelineFunc,
+  TimelineReplacement,
   TriggerAutoConfig,
   TriggerField,
   TriggerOutput,
@@ -40,7 +41,6 @@ import AutoplayHelper from './autoplay_helper';
 import BrowserTTSEngine from './browser_tts_engine';
 import { PerTriggerAutoConfig, PerTriggerOption, RaidbossOptions } from './raidboss_options';
 import { TimelineLoader } from './timeline';
-import { TimelineReplacement } from './timeline_parser';
 
 const isRaidbossLooseTimelineTrigger = (
   trigger: ProcessedTrigger,
@@ -133,6 +133,14 @@ const raidbossInstructions: { [lang in Lang]: string[] } = {
     '오버레이를 위치잠금하면 사라집니다',
     '지원되는 구역에서 타임라인과 트리거가 표시됩니다',
     '여름여울 농장에서 초읽기를 실행하여 테스트 해볼 수 있습니다',
+  ],
+  tc: [
+    '請依照以下步驟操作：',
+    '這是用於調整浮動視窗大小的除錯用文字',
+    '當你鎖定此藍色背景的浮動視窗後',
+    '這些文字將會消失。',
+    '在支援的區域中會自動載入時間軸與觸發器。',
+    '可在盛夏農莊使用 /countdown 指令測試此 raidboss 模組。',
   ],
 };
 
@@ -695,21 +703,27 @@ export class PopupText {
     // User triggers must come last so that they override built-in files.
     this.triggerSets.push(...this.options.Triggers);
 
-    // Eliminate any trigger sets with duplicate ids and record a lookup by id.
-    this.triggerSets = this.triggerSets.filter((triggerSet) => {
-      if (triggerSet.id === undefined)
-        return true;
-      if (this.triggerSetsById[triggerSet.id] !== undefined) {
-        console.log(
-          `${
-            triggerSet.filename ?? '???'
-          } has duplicate triggerSet id ${triggerSet.id}, ignoring triggers`,
-        );
-        return false;
+    // Eliminate any trigger sets with duplicate ids, allowing later ones to override earlier ones.
+    // Filter the list to keep the last instance of each ID while preserving order.
+    const lastVersionOfId = new Map<string, typeof this.triggerSets[number]>();
+    for (const set of this.triggerSets) {
+      if (set.id !== undefined) {
+        const existing = lastVersionOfId.get(set.id);
+        if (existing !== undefined) {
+          console.log(
+            `Overriding trigger set id '${set.id}' from '${existing.filename}' with '${set.filename}'`,
+          );
+        }
+        lastVersionOfId.set(set.id, set);
       }
-      this.triggerSetsById[triggerSet.id] = triggerSet;
-      return true;
+    }
+
+    this.triggerSets = this.triggerSets.filter((set) => {
+      if (set.id === undefined)
+        return true;
+      return lastVersionOfId.get(set.id) === set;
     });
+    this.triggerSetsById = Object.fromEntries(lastVersionOfId);
   }
 
   OnChangeZone(e: EventResponses['ChangeZone']): void {
@@ -1553,6 +1567,7 @@ export class PopupText {
         ja: 'や',
         cn: '然后',
         ko: ' 그리고 ',
+        tc: '然後',
       };
       triggerHelper.ttsText = triggerHelper.ttsText.replace(
         /\s*(<[-=]|[=-]>)\s*/g,

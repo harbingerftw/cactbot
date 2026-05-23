@@ -206,6 +206,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           ja: `${matches.ability} (${ownerNick}から、#${number})`,
           cn: `${matches.ability} (来自${ownerNick}，#${number})`,
           ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번)`,
+          tc: `${matches.ability} (來自${ownerNick}，#${number})`,
         };
         if (isStatuePositionKnown && isStatueNorth) {
           text = {
@@ -215,6 +216,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             ja: `${matches.ability} (北の${ownerNick}から、#${number})`,
             cn: `${matches.ability} (来自北方${ownerNick}，#${number})`,
             ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 북쪽)`,
+            tc: `${matches.ability} (來自北方${ownerNick}，#${number})`,
           };
         } else if (isStatuePositionKnown && !isStatueNorth) {
           text = {
@@ -224,6 +226,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             ja: `${matches.ability} (南の${ownerNick}から、#${number})`,
             cn: `${matches.ability} (来自南方${ownerNick}，#${number})`,
             ko: `${matches.ability} (대상자 "${ownerNick}", ${number}번 남쪽)`,
+            tc: `${matches.ability} (來自南方${ownerNick}，#${number})`,
           };
         }
 
@@ -267,6 +270,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             ja: `${matches.ability} (${pillarOwner}から)`,
             cn: `${matches.ability} (来自${pillarOwner})`,
             ko: `${matches.ability} (대상자 "${pillarOwner}")`,
+            tc: `${matches.ability} (來自${pillarOwner})`,
           },
         };
       },
@@ -294,10 +298,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E12S Promise Small Lion Tether',
       type: 'Tether',
       netRegex: NetRegexes.tether({ source: 'Beastly Sculpture', id: '0011' }),
-      netRegexDe: NetRegexes.tether({ source: 'Abbild Eines Löwen', id: '0011' }),
-      netRegexFr: NetRegexes.tether({ source: 'Création Léonine', id: '0011' }),
-      netRegexJa: NetRegexes.tether({ source: '創られた獅子', id: '0011' }),
-      netRegexCn: NetRegexes.tether({ source: '被创造的狮子', id: '0011' }),
       run: (data, matches) => {
         data.smallLionIdToOwner ??= {};
         data.smallLionIdToOwner[matches.sourceId.toUpperCase()] = matches.target;
@@ -309,10 +309,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E12S Promise Small Lion Lionsblaze',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Beastly Sculpture', id: '58B9' }),
-      netRegexDe: NetRegexes.ability({ source: 'Abbild Eines Löwen', id: '58B9' }),
-      netRegexFr: NetRegexes.ability({ source: 'Création Léonine', id: '58B9' }),
-      netRegexJa: NetRegexes.ability({ source: '創られた獅子', id: '58B9' }),
-      netRegexCn: NetRegexes.ability({ source: '被创造的狮子', id: '58B9' }),
       mistake: (data, matches) => {
         // Folks baiting the big lion second can take the first small lion hit,
         // so it's not sufficient to check only the owner.
@@ -360,6 +356,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
               ja: `${matches.ability} (${ownerNick}から, ${dirObj['ja']})`,
               cn: `${matches.ability} (来自${ownerNick}, ${dirObj['cn']}`,
               ko: `${matches.ability} (대상자 "${ownerNick}", ${dirObj['ko']})`,
+              tc: `${matches.ability} (來自${ownerNick}, ${dirObj['tc']})`,
             },
           };
         }
@@ -380,10 +377,6 @@ const triggerSet: OopsyTriggerSet<Data> = {
       id: 'E12S Promise Big Lion Kingsblaze',
       type: 'Ability',
       netRegex: NetRegexes.ability({ source: 'Regal Sculpture', id: '4F9E' }),
-      netRegexDe: NetRegexes.ability({ source: 'Abbild eines großen Löwen', id: '4F9E' }),
-      netRegexFr: NetRegexes.ability({ source: 'création léonine royale', id: '4F9E' }),
-      netRegexJa: NetRegexes.ability({ source: '創られた獅子王', id: '4F9E' }),
-      netRegexCn: NetRegexes.ability({ source: '被创造的狮子王', id: '4F9E' }),
       mistake: (data, matches) => {
         const singleTarget = matches.type === '21';
         const hasFireDebuff = data.fire && data.fire[matches.target];
@@ -399,6 +392,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           ja: '大ライオン(北)',
           cn: '北方大狮子',
           ko: '북쪽 큰 사자',
+          tc: '北方大獅子',
         };
         const southBigLion: LocaleText = {
           en: 'south big lion',
@@ -407,6 +401,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           ja: '大ライオン(南)',
           cn: '南方大狮子',
           ko: '남쪽 큰 사자',
+          tc: '南方大獅子',
         };
         const shared: LocaleText = {
           en: 'shared',
@@ -415,6 +410,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           ja: '重ねた',
           cn: '重叠',
           ko: '같이 맞음',
+          tc: '重疊',
         };
         const fireDebuff: LocaleText = {
           en: 'had fire',
@@ -423,6 +419,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
           ja: '炎付き',
           cn: '火Debuff',
           ko: '화염 디버프 받음',
+          tc: '火Debuff',
         };
 
         const labels = [];
@@ -466,6 +463,7 @@ const triggerSet: OopsyTriggerSet<Data> = {
             ja: 'ノックバック',
             cn: '击退坠落',
             ko: '넉백',
+            tc: '擊退墜落',
           },
         };
       },
@@ -482,6 +480,36 @@ const triggerSet: OopsyTriggerSet<Data> = {
           reportId: matches.targetId,
           text: matches.ability,
         };
+      },
+    },
+  ],
+  timelineReplace: [
+    {
+      'locale': 'de',
+      'replaceSync': {
+        'Beastly Sculpture': 'Abbild Eines Löwen',
+        'Regal Sculpture': 'Abbild eines großen Löwen',
+      },
+    },
+    {
+      'locale': 'fr',
+      'replaceSync': {
+        'Beastly Sculpture': 'Création Léonine',
+        'Regal Sculpture': 'création léonine royale',
+      },
+    },
+    {
+      'locale': 'ja',
+      'replaceSync': {
+        'Beastly Sculpture': '創られた獅子',
+        'Regal Sculpture': '創られた獅子王',
+      },
+    },
+    {
+      'locale': 'cn',
+      'replaceSync': {
+        'Beastly Sculpture': '被创造的狮子',
+        'Regal Sculpture': '被创造的狮子王',
       },
     },
   ],

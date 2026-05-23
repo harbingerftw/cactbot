@@ -128,6 +128,8 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.YuweyawataFieldStation,
   ZoneId.TheUnderkeep,
   ZoneId.TheMesoTerminal,
+  ZoneId.Mistwake,
+  ZoneId.TheClyteum,
 
   // Trials (A Realm Reborn)
   ZoneId.TheBowlOfEmbers,
@@ -251,6 +253,8 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.Recollection,
   ZoneId.TheAgelessNecropolis,
   ZoneId.TheWindwardWilds,
+  ZoneId.HellOnRails,
+  ZoneId.TheUnmaking,
 
   // High-end Trials (Dawntrail)
   ZoneId.WorqorLarDorExtreme,
@@ -262,6 +266,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.HellsKierUnreal,
   ZoneId.TheWreathOfSnakesUnreal,
   ZoneId.TheWindwardWildsExtreme,
+  ZoneId.HellOnRailsExtreme,
+  ZoneId.TsukuyomisPainUnreal,
+  ZoneId.TheUnmakingExtreme,
+  ZoneId.ShinryusDomainUnreal,
 
   // Alliance Raids (A Realm Reborn)
   ZoneId.TheLabyrinthOfTheAncients,
@@ -424,6 +432,7 @@ const contentList: (ZoneIdType)[] = [
   // Alliance Raids (Dawntrail)
   ZoneId.JeunoTheFirstWalk,
   ZoneId.SanDoriaTheSecondWalk,
+  ZoneId.WindurstTheThirdWalk,
 
   // Normal Raids (Dawntrail)
   ZoneId.AacLightHeavyweightM1,
@@ -434,6 +443,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AacCruiserweightM2,
   ZoneId.AacCruiserweightM3,
   ZoneId.AacCruiserweightM4,
+  ZoneId.AacHeavyweightM1,
+  ZoneId.AacHeavyweightM2,
+  ZoneId.AacHeavyweightM3,
+  ZoneId.AacHeavyweightM4,
 
   // Savage Raids (Dawntrail)
   ZoneId.AacLightHeavyweightM1Savage,
@@ -444,6 +457,10 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AacCruiserweightM2Savage,
   ZoneId.AacCruiserweightM3Savage,
   ZoneId.AacCruiserweightM4Savage,
+  ZoneId.AacHeavyweightM1Savage,
+  ZoneId.AacHeavyweightM2Savage,
+  ZoneId.AacHeavyweightM3Savage,
+  ZoneId.AacHeavyweightM4Savage,
 
   // Variant & Criterion Dungeons
   ZoneId.TheSildihnSubterrane,
@@ -455,6 +472,9 @@ const contentList: (ZoneIdType)[] = [
   ZoneId.AloaloIsland,
   ZoneId.AnotherAloaloIsland,
   ZoneId.AnotherAloaloIslandSavage,
+  ZoneId.TheMerchantsTale,
+  ZoneId.TheMerchantsTaleAdvanced,
+  ZoneId.AnotherMerchantsTale,
 
   // Chaotic Alliance Raids
   ZoneId.TheCloudOfDarknessChaotic,

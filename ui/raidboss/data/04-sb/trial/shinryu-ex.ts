@@ -1,4 +1,5 @@
 import Conditions from '../../../../../resources/conditions';
+import Outputs from '../../../../../resources/outputs';
 import { Responses } from '../../../../../resources/responses';
 import ZoneId from '../../../../../resources/zone_id';
 import { RaidbossData } from '../../../../../types/data';
@@ -16,34 +17,25 @@ const triggerSet: TriggerSet<Data> = {
   zoneId: ZoneId.TheMinstrelsBalladShinryusDomain,
   timelineFile: 'shinryu-ex.txt',
   triggers: [
-    {
-      id: 'ShinryuEx Heart Cleanup',
-      type: 'RemovedCombatant',
-      netRegex: { name: 'Shinryu', capture: false },
-      run: (data) => {
-        // Explicitly clear so ugly heart message doesn't appear after wipe.
-        delete data.phase;
-      },
-    },
-    {
+    { // Earthen Fury
       id: 'ShinryuEx Phase 1',
       type: 'StartsUsing',
       netRegex: { id: '25DE', source: 'Shinryu', capture: false },
       run: (data) => data.phase = 1,
     },
-    {
+    { // Dark Matter
       id: 'ShinryuEx Phase 2',
       type: 'StartsUsing',
       netRegex: { id: '25E7', source: 'Shinryu', capture: false },
       run: (data) => data.phase = 2,
     },
-    {
+    { // Protostar
       id: 'ShinryuEx Phase 3',
       type: 'StartsUsing',
       netRegex: { id: '25E4', source: 'Shinryu', capture: false },
       run: (data) => data.phase = 3,
     },
-    {
+    { // Tidal Wave enrage
       id: 'ShinryuEx Phase 4',
       type: 'StartsUsing',
       netRegex: { id: '264E', source: 'Shinryu', capture: false },
@@ -52,7 +44,7 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'ShinryuEx Akh Morn',
       type: 'StartsUsing',
-      netRegex: { id: '25F3', source: 'Shinryu' },
+      netRegex: { id: '25F3', source: 'Shinryu', capture: true },
       alertText: (data, matches, output) => {
         if (matches.target === data.me)
           return output.akhMornOnYou!();
@@ -73,6 +65,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'アク・ラーイ: 散開 動け',
           cn: '天光轮回：散开保持移动',
           ko: '아크 라이: 산개, 이동',
+          tc: '天光輪迴：散開保持移動',
         },
         akhMornOnYou: {
           en: 'Akh Morn on YOU',
@@ -81,6 +74,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '自分にアク・モーン',
           cn: '死亡轮回点名',
           ko: '아크몬 대상자',
+          tc: '死亡輪迴點名',
         },
         akhMornOn: {
           en: 'Akh Morn on ${player}',
@@ -89,6 +83,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${player}にアク・モーン',
           cn: '死亡轮回点${player}',
           ko: '"${player}" 아크몬',
+          tc: '死亡輪迴點 ${player}',
         },
       },
     },
@@ -99,12 +94,10 @@ const triggerSet: TriggerSet<Data> = {
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'Ice: Stack and Stop',
-          de: 'Eis: Stack und Stehenbleiben',
-          fr: 'Glace : Packez-vous et arrêtez',
-          ja: '氷: スタック 動かない',
-          cn: '冰地面：集合停止移动',
-          ko: '얼음: 집합하고 이동하지 않기',
+          en: 'Ice: Stack + don\'t move',
+          de: 'Eis: Sammeln + nicht bewegen',
+          cn: '冰: 集合 + 不要动',
+          ko: '얼음: 모이기 + 이동 멈추기',
         },
       },
     },
@@ -121,6 +114,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '中央から離れ',
           cn: '离开中间',
           ko: '중앙 피하기',
+          tc: '離開中間',
         },
       },
     },
@@ -138,6 +132,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '水に入る',
           cn: '进水圈',
           ko: '물 장판에 들어가기',
+          tc: '進水圈',
         },
       },
     },
@@ -156,12 +151,13 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         stopToGetFrozen: {
-          en: 'stop to get frozen',
+          en: 'Stop + Get frozen',
           de: 'Stopp! Einfrieren lassen',
           fr: 'Arrêtez, laissez-vous geler',
           ja: '止まれ、凍結',
-          cn: '停止移动吃冻结',
+          cn: '停止移动 + 吃冻结',
           ko: '멈춰서 얼기',
+          tc: '停止移動吃凍結',
         },
         stackInWater: {
           en: 'Stack in water',
@@ -170,6 +166,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '水に集合',
           cn: '在水圈分摊',
           ko: '물 장판에 모이기',
+          tc: '在水圈分攤',
         },
       },
     },
@@ -181,12 +178,13 @@ const triggerSet: TriggerSet<Data> = {
       alertText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'out of water',
+          en: 'Out of water',
           de: 'Raus aus dem Wasser',
           fr: 'Sortez de l\'eau',
           ja: '水から離れ',
           cn: '离开水圈',
           ko: '물 장판 밖으로',
+          tc: '離開水圈',
         },
       },
     },
@@ -208,12 +206,13 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         baitBoltKeepMoving: {
-          en: 'bait bolt, keep moving',
+          en: 'Bait bolt + keep moving',
           de: 'Blitz ködern, weiterbewegen',
           fr: 'Attirez la foudre, continuez à bouger',
           ja: '稲妻: 動き続ける',
-          cn: '诱导闪电，保持移动',
+          cn: '诱导闪电 + 保持移动',
           ko: '번개 공격 산개, 계속 움직이기',
+          tc: '誘導閃電，保持移動',
         },
         spreadOutNoWater: {
           en: 'Spread out, no water',
@@ -222,6 +221,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散開、水に入らない',
           cn: '散开，离开水圈',
           ko: '산개, 물장판 X',
+          tc: '散開，離開水圈',
         },
       },
     },
@@ -236,22 +236,12 @@ const triggerSet: TriggerSet<Data> = {
       },
       condition: (data) => data.phase === 3,
       delaySeconds: 9.5,
-      alarmText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'move away',
-          de: 'wegbewegen',
-          fr: 'Éloignez-vous',
-          ja: '移動',
-          cn: '躲开原地',
-          ko: '떨어지기',
-        },
-      },
+      response: Responses.moveAway('alarm'),
     },
     {
       id: 'ShinryuEx Icicle Left',
       type: 'Ability',
-      netRegex: { id: '25EF', source: 'Icicle' },
+      netRegex: { id: '25EF', source: 'Icicle', capture: true },
       condition: (_data, matches) => {
         return Math.round(parseFloat(matches.x)) === -30 &&
           Math.round(parseFloat(matches.y)) === -15;
@@ -259,12 +249,13 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'icicle, lean west',
+          en: 'Icicle, lean west',
           de: 'Eiszapfen, nach westen',
           fr: 'Stalactite, penchez vers l\'ouest',
           ja: 'アイシクル: 西へ',
-          cn: '冰柱，去左边',
+          cn: '冰柱, 偏左站',
           ko: '고드름, 왼쪽 먼저',
+          tc: '冰柱，去西邊',
         },
       },
     },
@@ -279,12 +270,13 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'icicle, lean east',
+          en: 'Icicle, lean east',
           de: 'Eiszapfen, nach Osten',
           fr: 'Stalactite, penchez vers l\'est',
           ja: 'アイシクル: 東へ',
-          cn: '冰柱，去右边',
+          cn: '冰柱, 偏右站',
           ko: '고드름, 오른쪽 먼저',
+          tc: '冰柱，去東邊',
         },
       },
     },
@@ -294,17 +286,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '25DA', source: 'Shinryu', capture: false },
       delaySeconds: 3,
       durationSeconds: 5,
-      infoText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'Knockback, look for water',
-          de: 'Rückstoß, nach Wasser schauen',
-          fr: 'Poussée, cherchez l\'eau',
-          ja: 'ノックバック、水を探せ',
-          cn: '击退，确认水圈位置',
-          ko: '넉백, 물기둥 확인',
-        },
-      },
+      response: Responses.knockback(),
     },
     {
       id: 'ShinryuEx Final Tidal Wave',
@@ -320,6 +302,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ヒールはもう要らない',
           cn: '狂暴读条，不用奶了',
           ko: '힐 그만',
+          tc: '狂暴讀條，不用補了',
         },
       },
     },
@@ -337,6 +320,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '尾: タゲチェンジ',
           cn: '打尾巴',
           ko: '꼬리 공격',
+          tc: '打尾巴',
         },
       },
     },
@@ -358,23 +342,25 @@ const triggerSet: TriggerSet<Data> = {
           ja: '心核: タゲチェンジ',
           cn: '打核心',
           ko: '심핵 공격',
+          tc: '打核心',
         },
       },
     },
     {
-      // TODO: can't find the id of this, so using all of them.
-      id: 'ShinryuEx Divebomb',
+      // TODO: math out locations and call directions if we get a log containing any of these IDs.
+      id: 'ShinryuEx Gyre Charge',
       type: 'StartsUsing',
       netRegex: { id: ['1FA8', '1FF4', '2603'], source: 'Shinryu', capture: false },
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'avoid divebomb',
+          en: 'Avoid divebomb',
           de: 'Divebomb ausweichen',
           fr: 'Évitez la bombe plongeante',
           ja: 'ダイブボムに避け',
           cn: '躲避俯冲',
           ko: '회전 돌진 피하기',
+          tc: '躲避俯衝',
         },
       },
     },
@@ -400,6 +386,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${player}にデスセンテンス',
           cn: '死刑点 ${player}',
           ko: '"${player}" 사형 선고',
+          tc: '死刑點 ${player}',
         },
         deathSentenceOnYou: {
           en: 'Death Sentence on YOU',
@@ -408,6 +395,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '自分にデスセンテンス',
           cn: '死刑点名',
           ko: '사형 선고 대상자',
+          tc: '死刑點名',
         },
       },
     },
@@ -421,23 +409,13 @@ const triggerSet: TriggerSet<Data> = {
       id: 'ShinryuEx Wormwail',
       type: 'StartsUsing',
       netRegex: { id: '2648', source: 'Shinryu', capture: false },
-      response: Responses.getUnder(),
+      response: Responses.getUnder('alert'),
     },
     {
       id: 'ShinryuEx Breath',
       type: 'StartsUsing',
       netRegex: { id: '264A', source: 'Shinryu', capture: false },
-      alertText: (_data, _matches, output) => output.text!(),
-      outputStrings: {
-        text: {
-          en: 'front cleave',
-          de: 'Frontalcleave',
-          fr: 'Cleave devant',
-          ja: '正面から離れ',
-          cn: '离开正面',
-          ko: '범위 밖으로',
-        },
-      },
+      response: Responses.awayFromFront(),
     },
     {
       id: 'ShinryuEx Final Left Wing',
@@ -448,12 +426,13 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.finalWing = true,
       outputStrings: {
         text: {
-          en: 'kill left first',
+          en: 'Kill left first',
           de: 'linken Flügel zuerst',
           fr: 'Tuez l\'aile gauche d\'abord',
           ja: 'レフトウィングに攻撃',
-          cn: '击杀左翼',
+          cn: '优先击杀左翼',
           ko: '왼쪽 날개 먼저',
+          tc: '擊殺左翼',
         },
       },
     },
@@ -466,12 +445,13 @@ const triggerSet: TriggerSet<Data> = {
       run: (data) => data.finalWing = true,
       outputStrings: {
         text: {
-          en: 'kill right first',
+          en: 'Kill right first',
           de: 'rechten Flügel zuerst',
           fr: 'Tuez l\'aile droite d\'abord',
           ja: 'ライトウィングに攻撃',
-          cn: '击杀右翼',
+          cn: '优先击杀右翼',
           ko: '오른쪽 날개 먼저',
+          tc: '擊殺右翼',
         },
       },
     },
@@ -489,12 +469,13 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         breakTethersThenStack: {
-          en: 'break tethers then stack',
+          en: 'Break tethers => stack',
           de: 'Kette zerreissen, dann stack',
           fr: 'Cassez les liens, puis packez-vous',
           ja: '鎖を引き、集合',
-          cn: '拉断连线然后分摊',
+          cn: '拉断连线 => 分摊',
           ko: '선 끊고 모이기',
+          tc: '拉斷連線然後分攤',
         },
         breakTethers: {
           en: 'break tethers',
@@ -503,6 +484,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '鎖',
           cn: '拉断连线',
           ko: '선 끊기',
+          tc: '拉斷連線',
         },
       },
     },
@@ -514,12 +496,13 @@ const triggerSet: TriggerSet<Data> = {
       alarmText: (_data, _matches, output) => output.text!(),
       outputStrings: {
         text: {
-          en: 'tail marker on you',
+          en: 'Tail marker on YOU',
           de: 'Schweifmarker auf dir',
           fr: 'Marqueur Queue sur VOUS',
           ja: '自分にテイル',
           cn: '龙尾点名',
           ko: '꼬리 징 대상자',
+          tc: '龍尾點名',
         },
       },
     },
@@ -547,17 +530,11 @@ const triggerSet: TriggerSet<Data> = {
           de: 'Stöße ausweichen',
           fr: 'Évitez les secousses',
           ja: 'アースシェーカーに避け',
-          cn: '远离大地动摇',
+          cn: '躲避大地动摇',
           ko: '어스 피하기',
+          tc: '遠離大地動搖',
         },
-        earthshakerOnYou: {
-          en: 'earthshaker on you',
-          de: 'Erdstoss auf dir',
-          fr: 'Secousse sur VOUS',
-          ja: '自分にアースシェーカー',
-          cn: '大地动摇点名',
-          ko: '어스 대상자',
-        },
+        earthshakerOnYou: Outputs.earthshakerOnYou,
       },
     },
     {
@@ -624,6 +601,7 @@ const triggerSet: TriggerSet<Data> = {
     },
     {
       'locale': 'fr',
+      'missingTranslations': true,
       'replaceSync': {
         'Hakkinryu': 'Hakkinryu',
         'Icicle': 'stalactite',
@@ -778,6 +756,59 @@ const triggerSet: TriggerSet<Data> = {
         'Tidal Wave': '巨浪',
         'Touchdown': '空降',
         'Wormwail': '神龙啸',
+      },
+    },
+    {
+      'locale': 'tc',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Cocoon': '光繭',
+        'Icicle': '冰柱',
+        'Left Wing': '左翼',
+        'Right Wing': '右翼',
+        'Shinryu': '神龍',
+        'Tail': '龍尾',
+        'The Worm\'s Heart': '神龍的核心',
+        'Hakkinryu': '白金龍',
+      },
+      'replaceText': {
+        'Aerial Blast': '大氣爆發',
+        'Akh Morn': '死亡輪迴',
+        'Akh Rhai': '天光輪迴',
+        'Atomic Ray': '原子射線',
+        'Benighting Breath': '黑暗吐息',
+        'Cocoon Markers': '光繭點名',
+        'Dark Matter': '黑暗物質',
+        'Diamond Dust': '鑽石星塵',
+        'Dragonfist': '龍掌',
+        'Earth Breath': '大地吐息',
+        'Earthen Fury': '大地之怒',
+        'First Wing': '第一隻翅膀',
+        'Gyre Charge': '螺旋衝鋒',
+        'Hellfire': '地獄之火炎',
+        'Hypernova': '超新星',
+        'Icicle Impact': '冰柱衝擊',
+        'Ice Storm': '吹雪',
+        'Judgment Bolt': '制裁之雷',
+        'Levinbolt': '閃電',
+        'Meteor Impact': '隕石衝擊',
+        'Phase': '階段',
+        'Protostar': '原恆星',
+        'Reiryu Adds': '靈龍出現',
+        'Second Wing': '第二隻翅膀',
+        'Shatter': '破碎',
+        'Spikesicle': '冰柱突刺',
+        'Summon Icicle': '召喚冰柱',
+        'Super Cyclone': '超級颶風',
+        'TAP BUTTON OR ELSE': '按按鈕！',
+        'Tail Marker': '尾巴點名',
+        'Tail Slap': '尾部猛擊',
+        'Tail Spit': '尾部重擊',
+        'Tera Slash': '萬億斬擊',
+        'Tethers': '連線',
+        'Tidal Wave': '巨浪',
+        'Touchdown': '空降',
+        'Wormwail': '神龍嘯',
       },
     },
     {

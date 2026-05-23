@@ -1,6 +1,6 @@
 # Cactbot 自定义教程
 
-🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[繁體中文](./zh-TW/CactbotCustomization.md)] [[한국어](../ko-KR/CactbotCustomization.md)]
+🌎 [[English](../CactbotCustomization.md)] [**简体中文**] [[繁體中文](../zh-TW/CactbotCustomization.md)] [[한국어](../ko-KR/CactbotCustomization.md)]
 
 - [使用cactbot配置界面](#使用-cactbot-配置界面)
 - [通过cactbot配置界面改变触发器文本](#通过-cactbot-配置界面改变触发器文本)
@@ -209,6 +209,7 @@ Options.Triggers.push({
           ja: '挑発: ${player}',
           cn: '挑衅: ${player}',
           ko: '도발: ${player}',
+          tc: '挑釁: ${player}',
         },
       },
     },
@@ -247,6 +248,28 @@ Options.Triggers.push([
 ```
 
 我们推荐阅读 [触发器指南](RaidbossGuide.md) 以了解如何撰写 Cactbot 的触发器，当然你也可以直接看 [ui/raidboss/data](../../ui/raidboss/data) 中现有的触发器代码。
+
+### 触发器集合覆盖
+
+当你在用户文件中定义了与内置触发器集合相同 `id` 的触发器集合时，整个内置触发器集合将被完全覆盖。
+
+例如：
+
+```javascript
+Options.Triggers.push({
+  id: 'TheUnendingCoilOfBahamutUltimate',  // 与内置的触发器集合ID相同
+  zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
+  triggers: [
+    // 你的自定义触发器
+    {
+      id: 'My Custom Trigger',
+      // ... 触发器内容
+    },
+  ],
+});
+```
+
+在这个例子中，由于 `id` 与内置的巴哈姆特绝境战触发器集合相同，内置的所有触发器都不会执行，只会执行你自定义的触发器。你需要在自定义文件中重新实现所有需要的触发器逻辑。
 
 ## Raidboss 时间轴自定义
 

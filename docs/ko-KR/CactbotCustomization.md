@@ -1,6 +1,6 @@
 # Cactbot 사용자 설정
 
-🌎 [[English](../CactbotCustomization.md)] [[简体中文](../zh-CN/CactbotCustomization.md)] [[繁體中文](./zh-TW/CactbotCustomization.md)] [**한국어**]
+🌎 [[English](../CactbotCustomization.md)] [[简体中文](../zh-CN/CactbotCustomization.md)] [[繁體中文](../zh-TW/CactbotCustomization.md)] [**한국어**]
 
 - [cactbot UI를 사용하는 방법](#cactbot-ui를-사용하는-방법)
 - [cactbot UI로 트리거 문자열 수정하기](#cactbot-ui로-트리거-문자열-수정하기)
@@ -273,6 +273,7 @@ Options.Triggers.push({
           ja: '挑発: ${player}',
           cn: '挑衅: ${player}',
           ko: '도발: ${player}',
+          tc: '挑釁: ${player}',
         },
       },
     },
@@ -315,6 +316,28 @@ Options.Triggers.push([
 cactbot 트리거 작성하는 방법을 더 자세히 배우려면
 [트리거 가이드](../RaidbossGuide.md)와
 [ui/raidboss/data](../../ui/raidboss/data)에 이미 존재하는 트리거를 읽어보세요.
+
+### 트리거 세트 덮어쓰기
+
+사용자 파일에서 내장 트리거 세트와 동일한 `id`를 가진 트리거 세트를 정의하면, 전체 내장 트리거 세트가 완전히 덮어쓰여집니다.
+
+예시:
+
+```javascript
+Options.Triggers.push({
+  id: 'TheUnendingCoilOfBahamutUltimate',  // 내장 트리거 세트 ID와 동일
+  zoneId: ZoneId.TheUnendingCoilOfBahamutUltimate,
+  triggers: [
+    // 사용자 정의 트리거
+    {
+      id: 'My Custom Trigger',
+      // ... 트리거 내용
+    },
+  ],
+});
+```
+
+이 예시에서 `id`가 내장된 바하무트 절경전 트리거 세트와 동일하기 때문에, 내장 트리거는 실행되지 않고 사용자 정의 트리거만 실행됩니다. 사용자 정의 파일에서 필요한 모든 트리거 로직을 다시 구현해야 합니다.
 
 ## Raidboss 타임라인 덮어쓰기
 
@@ -456,6 +479,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#user-�
           fr: 'Changez de côté',
           cn: '换边',
           ko: '반대로 이동',
+          tc: '換邊',
         },
       }, // <- 시작한 중괄호의 닫는 쌍이 하나의 트리거의 끝점입니다. 쉼표도 포함한다고 생각하는게 복잡하지 않습니다.
     ],
@@ -475,6 +499,7 @@ User 폴더의 위치를 모른다면, [User 디렉토리 설정하기](#user-�
           fr: 'Changez de côté',
           cn: '换边',
           ko: '피하기', // <- 여기를 바꿨습니다.
+          tc: '換邊',
         },
       },
     ],
@@ -536,6 +561,7 @@ Options.Triggers.push({
         fr: 'Changez de côté',
         cn: '换边',
         ko: '피하기',
+        tc: '換邊',
       },
     },
   ],

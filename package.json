@@ -1,14 +1,14 @@
 {
   "name": "cactbot",
-  "version": "0.35.4",
-  "releaseSummary": "initial Pilgrim's Traverse, The Meso Terminal, CN 7.35, KO 7.3, i18n",
-  "releaseInDraft": "false",
+  "version": "0.37.1",
+  "releaseSummary": "Enuo, Enuo EX, Shinryu Unreal, i18n",
+  "releaseInDraft": "true",
   "license": "Apache-2.0",
   "type": "module",
   "types": "./types",
   "repository": {
     "type": "git",
-    "url": "https://github.com/OverlayPlugin/cactbot"
+    "url": "git+https://github.com/OverlayPlugin/cactbot.git"
   },
   "files": [
     "./ui",

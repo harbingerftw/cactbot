@@ -152,8 +152,6 @@ const mapEffectData: MapEffectData = {
   },
 } as const;
 
-const mapEffectTiles: MapEffectTile[] = Object.keys(mapEffectData) as MapEffectTile[];
-
 const isTileLoc = (loc: string): loc is TileSlotsType => {
   return tileSlots.includes(loc as TileSlotsType);
 };
@@ -220,12 +218,14 @@ const defaultTileState = () => ({
 } as const);
 
 export interface Data extends RaidbossData {
+  readonly triggerSetConfig: {
+    escelonsFall: 'dpsIn' | 'supportFirst' | 'dpsFirst' | 'none';
+  };
   phase: Phase;
   tileState: {
     [loc in MapEffectTile]: 'unknown' | 'red' | 'grey';
   };
   escelonFallBaits: ('near' | 'far')[];
-  bloom1StartDir?: number;
   bloom4RoseDirNorth: boolean;
   bloom5FirstDirSafe: 'dirNE' | 'dirNW' | 'dirSE' | 'dirSW' | 'unknown';
   bloom5SecondDirSafe: 'dirNE' | 'dirNW' | 'dirSE' | 'dirSW' | 'unknown';
@@ -235,6 +235,83 @@ export interface Data extends RaidbossData {
 const triggerSet: TriggerSet<Data> = {
   id: 'RecollectionExtreme',
   zoneId: ZoneId.RecollectionExtreme,
+  config: [
+    {
+      id: 'escelonsFall',
+      name: {
+        en: 'Escelons Fall Strategy',
+        de: 'Aufsteigendes Kreuz Strategy',
+        cn: '凌空错策略',
+        ko: '클라임 크로스 전략',
+      },
+      comment: {
+        en: `Strategy for resolving Escelons' Fall 1 and 3.
+
+            None - Just call the first bait.
+            DPS In - DPS always start in, Support always start out.
+            Support First - Support bait the first hit.
+            DPS First - DPS bait the first hit.`,
+        de: `Strategie zur Bewältigung von Escelons Fall 1 und 3.
+
+            Keine – Zeige einfach erste Köder Position an.
+            DPS innen – DPS startet immer innen, Support startrt immer außen.
+            Support zuerst – Support ködert zuerst.
+            DPS zuerst – DPS ködert zuerst.`,
+        fr: `Stratégie pour résoudre Péril cruciforme 1 et 3.
+
+            None - On call juste le 1er bait.
+            DPS Intérieur - Les DPS commencent à l'intérieur, les supports commencent à l'extérieur.
+            Support en 1er - Les supports baitent en premier.
+            DPS en 1er - Les DPS baitent en premier.`,
+        cn: `凌空错1和3处理策略。
+
+            无 - 仅播报第一次引导。
+            输出在内 - DPS 始终圈内开始，T 奶始终圈外开始。
+            T 奶先 - T 奶引导第一次攻击。
+            DPS 先 - DPS 引导第一次攻击。`,
+        ko: `클라임 크로스 1, 3 처리 전략.
+
+            없음 - 첫 번째 유도만 호출.
+            딜러 안 - 딜러는 항상 안쪽에서 시작, 탱힐은 항상 바깥쪽에서 시작.
+            탱힐 먼저 - 탱힐이 첫 번째 공격을 유도.
+            딜러 먼저 - 딜러가 첫 번째 공격을 유도.`,
+      },
+      type: 'select',
+      options: {
+        en: {
+          'None': 'none',
+          'DPS In': 'dpsIn',
+          'Support First': 'supportFirst',
+          'DPS First': 'dpsFirst',
+        },
+        de: {
+          'Keine': 'none',
+          'DPS innen': 'dpsIn',
+          'Support zuerst': 'supportFirst',
+          'DPS zuerst': 'dpsFirst',
+        },
+        fr: {
+          'Aucun': 'none',
+          'DPS Intérieur': 'dpsIn',
+          'Support en 1er': 'supportFirst',
+          'DPS en 1er': 'dpsFirst',
+        },
+        cn: {
+          '无': 'none',
+          '输出在内': 'dpsIn',
+          'T 奶先': 'supportFirst',
+          'DPS 先': 'dpsFirst',
+        },
+        ko: {
+          '없음': 'none',
+          '딜러 안': 'dpsIn',
+          '탱힐 먼저': 'supportFirst',
+          '딜러 먼저': 'dpsFirst',
+        },
+      },
+      default: 'none',
+    },
+  ],
   timelineFile: 'zelenia-ex.txt',
   initData: () => ({
     escelonFallBaits: [],
@@ -307,47 +384,81 @@ const triggerSet: TriggerSet<Data> = {
         if (bait1 === undefined || bait2 === undefined)
           return;
 
+        let first = 'unknown';
+
+        if (data.triggerSetConfig.escelonsFall === 'dpsIn') {
+          if (data.role === 'tank' || data.role === 'healer') {
+            first = 'out';
+          } else {
+            first = 'in';
+          }
+        } else if (data.triggerSetConfig.escelonsFall === 'supportFirst') {
+          if (data.role === 'tank' || data.role === 'healer') {
+            first = bait1 === 'near' ? 'in' : 'out';
+          } else {
+            first = bait1 === 'near' ? 'out' : 'in';
+          }
+        } else if (data.triggerSetConfig.escelonsFall === 'dpsFirst') {
+          if (data.role === 'tank' || data.role === 'healer') {
+            first = bait1 === 'near' ? 'out' : 'in';
+          } else {
+            first = bait1 === 'near' ? 'in' : 'out';
+          }
+        } else {
+          first = bait1;
+        }
+
         if (bait1 === bait2) {
           return output.swapAfterFirst!({
-            first: output[bait1]!(),
+            first: output[first]!(),
           });
         }
         return output.swapAfterSecond!({
-          first: output[bait1]!(),
+          first: output[first]!(),
         });
       },
       outputStrings: {
         near: {
-          en: 'Near',
-          de: 'Nah',
-          fr: 'proche',
-          ja: '近',
-          cn: '近',
-          ko: '가까이',
+          en: 'Near bait first',
+          de: 'Nah ködert zuerst',
+          fr: 'Proche déposent en premier',
+          cn: '先靠近引导',
+          ko: '가까이 유도 먼저',
         },
         far: {
-          en: 'Far',
-          de: 'Fern',
-          fr: 'loin',
-          ja: '遠',
-          cn: '远',
-          ko: '멀리',
+          en: 'Far bait first',
+          de: 'Fern ködert zuerst',
+          fr: 'Loin déposent en premier',
+          cn: '先远离引导',
+          ko: '멀리 유도 먼저',
+        },
+        out: {
+          en: 'Start out',
+          de: 'Starte außen',
+          fr: 'Commencez à l\'extérieur',
+          cn: '圈外开始',
+          ko: '바깥 시작',
+        },
+        in: {
+          en: 'Start in',
+          de: 'Starte innen',
+          fr: 'Commencez à l\'intérieur',
+          cn: '圈内开始',
+          ko: '안 시작',
         },
         swapAfterFirst: {
-          en: '${first} bait first, Swap after first+third',
-          de: '${first} zuerst ködern, wechsel nach dem ersten + dritten',
-          fr: 'Bait ${first} d\'abord, échangez après le 1er et 3ème',
-          ja: '${first} を先に誘導 → 1・3回目後に交代',
-          cn: '先 ${first} 引导, 1、3刀后交换',
-          ko: '처음 ${first} 유도, 1, 3번째 이후 교대',
+          en: '${first}, Swap after first+third',
+          de: '${first}, Wechseln nach erstem+dritten',
+          fr: '${first}, swap après le premier et troisième',
+          cn: '${first}, 第1次和第3次后交换',
+          ko: '${first}, 1번째와 3번째 후 교대',
         },
         swapAfterSecond: {
-          en: '${first} bait first, Swap after second',
-          de: '${first} zuerst ködern, wechsel nach dem zweiten',
-          fr: 'Bait ${first} d\'abord, échangez après le 2ème',
-          ja: '${first} を先に誘導 → 2回目後に交代',
-          cn: '先 ${first} 引导, 2刀后交换',
-          ko: '처음 ${first} 유도, 2번째 이후 교대',
+          en: '${first}, Swap after second',
+          de: '${first}, Wechseln nach dem zweiten',
+          fr: '${first}, swap après le second',
+          cn: '${first}, 第2次后交换',
+          ko: '${first}, 2번째 후 교대',
         },
       },
     },
@@ -372,6 +483,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ドーナツ対象 → 塔踏み',
           cn: '月环点名, 踩塔',
           ko: '도넛 대상자, 기둥 들어가기',
+          tc: '月環點名, 踩塔',
         },
       },
     },
@@ -403,6 +515,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'タンクヒラ/DPS 頭割り',
           cn: '红地板分摊',
           ko: '탱힐/딜러 쉐어',
+          tc: '紅地板分攤',
         },
       },
     },
@@ -457,6 +570,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '頭割り x5',
           cn: '5次分摊',
           ko: '쉐어 5번',
+          tc: '5次分攤',
         },
       },
     },
@@ -473,6 +587,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'タンクヒラ西 / DPS東',
           cn: 'T奶 左, DPS 右',
           ko: '탱힐 왼쪽, 딜러 오른쪽',
+          tc: 'T奶 左, DPS 右',
         },
       },
     },
@@ -490,6 +605,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '剣を外に向ける',
           cn: '引导半场刀',
           ko: '칼이 바깥으로 향하도록 유도',
+          tc: '引導半場刀',
         },
       },
     },
@@ -501,58 +617,21 @@ const triggerSet: TriggerSet<Data> = {
       response: Responses.bigAoe(),
     },
     {
-      id: 'ZeleniaEx Bloom 1 Rotation Collector',
-      type: 'MapEffect',
-      netRegex: {
-        location: tileSlots,
-        flags: [bloomTileFlags.red, bloomTileFlags.grey, bloomTileFlags.greyToRed],
-        capture: false,
-      },
-      condition: (data) => data.phase === 'bloom1',
-      delaySeconds: 0.5,
-      suppressSeconds: 100,
-      run: (data) => {
-        let dirIdx = 1;
-        let foundGrey = false;
-
-        // Find the 1st inner tile clockwise that's grey
-        for (const key of mapEffectTiles) {
-          if (!key.includes('Inner'))
-            continue;
-          if (foundGrey) {
-            if (data.tileState[key] === 'red') {
-              // Special edge case, NNW is safe
-              dirIdx = 15;
-            } else {
-              dirIdx += 2;
-            }
-            break;
-          }
-
-          if (data.tileState[key] === 'grey') {
-            foundGrey = true;
-            continue;
-          }
-
-          dirIdx += 2;
-        }
-
-        data.bloom1StartDir = dirIdx;
-      },
-    },
-    {
-      id: 'ZeleniaEx Bloom 1 Rotation',
+      id: 'ZeleniaEx Bloom 1',
       type: 'HeadMarker',
       netRegex: { id: [headMarkerData.clockwise, headMarkerData.counterclockwise], capture: true },
-      infoText: (data, matches, output) =>
+      infoText: (_data, matches, output) =>
         output.text!({
-          dir: output[Directions.output16Dir[data.bloom1StartDir ?? -1] ?? 'unknown']!(),
+          dir: matches.id === headMarkerData.clockwise
+            ? output.dirSE!()
+            : output.dirN!(),
           rotate: matches.id === headMarkerData.clockwise
             ? output.clockwise!()
             : output.counterclockwise!(),
         }),
       outputStrings: {
-        ...Directions.outputStrings16Dir,
+        dirN: Outputs.dirN,
+        dirSE: Outputs.dirSE,
         clockwise: Outputs.clockwise,
         counterclockwise: Outputs.counterclockwise,
         text: {
@@ -562,6 +641,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} から開始, ${rotate}',
           cn: '从 ${dir} 起跑, ${rotate}',
           ko: '${dir} 시작, ${rotate}으로 회전',
+          tc: '從 ${dir} 起跑, ${rotate}',
         },
       },
     },
@@ -594,6 +674,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内8時 ⇒ 外10時 ⇒ 外8時',
           cn: '内左偏下 => 外左偏上 => 外左偏下',
           ko: '안 8시 => 바깥 10시 => 바깥 8시',
+          tc: '內左偏下 => 外左偏上 => 外左偏下',
         },
         inEast: {
           en: 'In ESE => Out ESE => Out ENE',
@@ -602,6 +683,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '内4時 ⇒ 外4時 ⇒ 外2時',
           cn: '内右偏下 => 外右偏下 => 外右偏上',
           ko: '안 4시 => 바깥 4시 => 바깥 2시',
+          tc: '內右偏下 => 外右偏下 => 外右偏上',
         },
         outWest: {
           en: 'Out WSW => In WNW => In WSW',
@@ -610,6 +692,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外8時 ⇒ 内10時 ⇒ 内8時',
           cn: '外左偏下 => 内左偏上 => 内左偏下',
           ko: '바깥 8시 => 안 10시 => 안 8시',
+          tc: '外左偏下 => 內左偏上 => 內左偏下',
         },
         outEast: {
           en: 'Out ESE => In ESE => In ENE',
@@ -618,6 +701,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外4時 ⇒ 内4時 ⇒ 内2時',
           cn: '外右偏下 => 内右偏下 => 内右偏上',
           ko: '바깥 4시 => 안 4시 => 안 2시',
+          tc: '外右偏下 => 內右偏下 => 內右偏上',
         },
       },
     },
@@ -643,6 +727,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'バラ対象',
           cn: '蔷薇点名',
           ko: '장미징 대상자',
+          tc: '薔薇點名',
         },
         tower: {
           en: 'Soak Tower',
@@ -651,6 +736,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '塔踏み',
           cn: '踩塔',
           ko: '기둥 들어가기',
+          tc: '踩塔',
         },
       },
     },
@@ -683,6 +769,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'バラ北, さんかい南',
           cn: '蔷薇上, 分散下',
           ko: '장미 북쪽, 산개 남쪽',
+          tc: '薔薇上, 分散下',
         },
         south: {
           en: 'Roses south, spreads north',
@@ -691,6 +778,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'バラ南, さんかい北',
           cn: '蔷薇下, 分散上',
           ko: '장미 남쪽, 산개 북쪽',
+          tc: '薔薇下, 分散上',
         },
       },
     },
@@ -728,6 +816,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'バラ対象, ${northSouth} さんかい',
           cn: '蔷薇点名, ${northSouth} 分散',
           ko: '장미징 대상자, ${northSouth}에서 산개',
+          tc: '薔薇點名, ${northSouth} 分散',
         },
         spread: {
           en: 'Spread Marker on YOU, spread ${northSouth}',
@@ -736,6 +825,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'さんかい対象, ${northSouth} さんかい',
           cn: '分散点名, ${northSouth} 分散',
           ko: '산개징 대상자, ${northSouth}에서 산개',
+          tc: '分散點名, ${northSouth} 分散',
         },
       },
     },
@@ -752,6 +842,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '茨集合 => 線切り => 赤床頭割り',
           cn: '集合连线 => 拉断连线 => 红地板分摊',
           ko: '모이기 => 선 끊기 => 장미장판위에 서기',
+          tc: '集合連線 => 拉斷連線 => 紅地板分攤',
         },
       },
     },
@@ -813,6 +904,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${startDir} 開始',
           cn: '从 ${startDir} 起跑',
           ko: '${startDir} 시작',
+          tc: '從 ${startDir} 起跑',
         },
       },
     },
@@ -844,6 +936,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${inOutFirst} ${dirFirst} 時計回り => ${inOutSecond} ${dirSecond}',
           cn: '${inOutFirst} ${dirFirst} 顺时针 => ${inOutSecond} ${dirSecond}',
           ko: '${dirFirst} ${inOutFirst} 시계방향 => ${dirSecond} ${inOutSecond}',
+          tc: '${inOutFirst} ${dirFirst} 順時針 => ${inOutSecond} ${dirSecond}',
         },
       },
     },
@@ -871,6 +964,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'バラ対象',
           cn: '蔷薇点名',
           ko: '장미징 대상자',
+          tc: '薔薇點名',
         },
         tower: {
           en: 'Tower Soaks Later',
@@ -879,6 +973,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'あとで塔踏み',
           cn: '稍后踩塔',
           ko: '나중에 기둥 들어가기',
+          tc: '稍後踩塔',
         },
       },
     },
@@ -914,6 +1009,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${inOut} にバラ置き => 扇回避',
           cn: '${inOut} 放置蔷薇 => 躲避扇形',
           ko: '${inOut} 장미 놓기 => 장판 피하기',
+          tc: '${inOut} 放置薔薇 => 躲避扇形',
         },
         tower: {
           en: 'Dodge cleaves => soak tower',
@@ -922,6 +1018,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '扇回避 => 塔踏み',
           cn: '躲避扇形 => 踩塔',
           ko: '장판 피하기 => 기둥 들어가기',
+          tc: '躲避扇形 => 踩塔',
         },
       },
     },
@@ -1105,6 +1202,55 @@ const triggerSet: TriggerSet<Data> = {
         'Thorned Catharsis': '玫瑰涤',
         'Thunder Slash': '雷鸣剑',
         'Valorous Ascension': '凌空破',
+      },
+    },
+    {
+      'locale': 'tc',
+      'missingTranslations': true,
+      'replaceSync': {
+        'Briar Thorn': 'クライムハザード',
+        'Zelenia(?!\')': 'ゼレニア',
+        'Zelenia\'s Shade': 'ゼレニアの幻影',
+      },
+      'replaceText': {
+        // '\\(cast\\)': '', // FIXME '(咏唱)'
+        // '\\(chakrams\\)': '', // FIXME '(预兆)'
+        // '\\(enrage\\?\\)': '', // FIXME '(狂暴?)'
+        // '\\(enrage\\)': '', // FIXME '(狂暴)'
+        // '\\(markers\\)': '', // FIXME '(标记)'
+        // '\\(resolves\\)': '', // FIXME '(判定)'
+        // '\\(snapshot\\)': '', // FIXME '(快照)'
+        'Alexandrian Banish II(?!I)': '王國中放逐',
+        'Alexandrian Banish III': '王國強放逐',
+        'Alexandrian Holy': '王國神聖',
+        'Alexandrian Thunder II(?!I)': '王國・中雷電',
+        'Alexandrian Thunder III': '王國・大雷電',
+        'Alexandrian Thunder IV': '王國・超雷電',
+        'Blessed Barricade': '聖護壁',
+        'Bud of Valor': '幻影生成',
+        'Emblazon': '活性紋',
+        'Encircling Thorns': '玫瑰荊棘',
+        'Escelons\' Fall': '淩空錯',
+        'Explosion': '爆炸',
+        'Holy Hazard': '神聖破',
+        'Perfumed Quietus': '寂滅之玫瑰',
+        'Power Break': '破勢之劍',
+        'Queen\'s Crusade': '聖戰領域',
+        'Rose Red': '終曲之玫瑰',
+        'Roseblood Bloom': '魔法陣展開',
+        'Roseblood Withering': '魔法陣展開·零式',
+        'Roseblood: 2nd Bloom': '魔法陣展開·二式',
+        'Roseblood: 3rd Bloom': '魔法陣展開·三式',
+        'Roseblood: 4th Bloom': '魔法陣展開·四式',
+        'Roseblood: 5th Bloom': '魔法陣展開·五式',
+        'Roseblood: 6th Bloom': '魔法陣展開·六式',
+        'Shock': '震驚',
+        'Spearpoint Push': '突擊',
+        'Specter of the Lost': '破靈之劍',
+        'Stock Break': '破防之劍',
+        'Thorned Catharsis': '玫瑰滌',
+        'Thunder Slash': '雷鳴劍',
+        'Valorous Ascension': '淩空破',
       },
     },
     {

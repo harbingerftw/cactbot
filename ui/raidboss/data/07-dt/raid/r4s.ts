@@ -129,6 +129,7 @@ const witchHuntAlertOutputStrings = {
     ja: '中へ',
     cn: '月环',
     ko: '안',
+    tc: '月環',
   },
   out: {
     en: 'Out',
@@ -137,6 +138,7 @@ const witchHuntAlertOutputStrings = {
     ja: '外へ',
     cn: '钢铁',
     ko: '밖',
+    tc: '鋼鐵',
   },
   near: {
     en: 'Baits Close (Party Far)',
@@ -145,6 +147,7 @@ const witchHuntAlertOutputStrings = {
     ja: '近づいて誘導 (他は離れる)',
     cn: '引导近 (小队远)',
     ko: '가까이 유도 (본대 멀리)',
+    tc: '引導近 (小隊遠)',
   },
   far: {
     en: 'Baits Far (Party Close)',
@@ -153,6 +156,7 @@ const witchHuntAlertOutputStrings = {
     ja: '離れて誘導 (他は近づく)',
     cn: '引导远 (小队近)',
     ko: '멀리 유도 (본대 가까이)',
+    tc: '引導遠 (小隊近)',
   },
   tanksNear: {
     en: 'Tanks Close (Party Far)',
@@ -160,6 +164,7 @@ const witchHuntAlertOutputStrings = {
     fr: 'Tanks près (Groupe au loin)',
     cn: '坦克近 (小队远)',
     ko: '탱커 가까이 (본대 멀리)',
+    tc: '坦克近 (小隊遠)',
   },
   healersFar: {
     en: 'Healers Far (Party Close)',
@@ -167,6 +172,7 @@ const witchHuntAlertOutputStrings = {
     fr: 'Healers loin (Groupe près)',
     cn: '治疗远 (小队近)',
     ko: '힐러 멀리 (본대 가까이)',
+    tc: '治療遠 (小隊近)',
   },
   meleeNear: {
     en: 'Melee Close (Party Far)',
@@ -174,6 +180,7 @@ const witchHuntAlertOutputStrings = {
     fr: 'DPS Mêlée près (Groupe au loin)',
     cn: '近战近 (小队远)',
     ko: '근딜 가까이 (본대 멀리)',
+    tc: '近戰近 (小隊遠)',
   },
   rangedFar: {
     en: 'Ranged Far (Party Close)',
@@ -181,6 +188,7 @@ const witchHuntAlertOutputStrings = {
     fr: 'DPS Distance loin (Groupe près)',
     cn: '远程远 (小队近)',
     ko: '원딜 멀리 (본대 가까이)',
+    tc: '遠程遠 (小隊近)',
   },
   combo: {
     en: '${inOut} => ${bait}',
@@ -189,6 +197,7 @@ const witchHuntAlertOutputStrings = {
     ja: '${inOut} => ${bait}',
     cn: '${inOut} => ${bait}',
     ko: '${inOut} => ${bait}',
+    tc: '${inOut} => ${bait}',
   },
   unknown: Outputs.unknown,
 } as const;
@@ -201,6 +210,7 @@ const tailThrustOutputStrings = {
     ja: '<== (左から開始) 2連続ノックバック',
     cn: '<== (左边开始) 两次击退',
     ko: '<== (왼쪽에서 시작) 넉백 2번',
+    tc: '<== (左邊開始) 兩次擊退',
   },
   iceRight: {
     en: '(Start on Right) Double Knockback ==>',
@@ -209,6 +219,7 @@ const tailThrustOutputStrings = {
     ja: '(右から開始) 2連続ノックバック ==>',
     cn: '(右边开始) 两次击退 ==>',
     ko: '(오른쪽에서 시작) 넉백 2번 ==>',
+    tc: '(右邊開始) 兩次擊退 ==>',
   },
   fireLeft: {
     en: 'Fire - Start Front + Right ==>',
@@ -217,6 +228,7 @@ const tailThrustOutputStrings = {
     ja: '火 - 最前列 + 右側へ ==>',
     cn: '火 - 右右右 ==>',
     ko: '불 - 오른쪽 앞에서 시작 ==>',
+    tc: '火 - 右右右 ==>',
   },
   fireRight: {
     en: '<== Fire - Start Front + Left',
@@ -225,6 +237,7 @@ const tailThrustOutputStrings = {
     ja: '<== 火 - 最前列 + 左側へ',
     cn: '<== 火 - 左左左',
     ko: '<== 불 - 왼쪽 앞에서 시작',
+    tc: '<== 火 - 左左左',
   },
   unknown: Outputs.unknown,
 } as const;
@@ -237,6 +250,7 @@ const swordQuiverOutputStrings = {
     ja: '前方 / 横側 へ',
     cn: '去前 / 侧边',
     ko: '앞 / 양옆으로',
+    tc: '去前 / 側邊',
   },
   frontAndBack: {
     en: 'Go Front / Back',
@@ -245,6 +259,7 @@ const swordQuiverOutputStrings = {
     ja: '前方 / 後方 へ',
     cn: '去前 / 后边',
     ko: '앞 / 뒤로',
+    tc: '去前 / 後面',
   },
   sidesAndBack: {
     en: 'Go Sides / Back',
@@ -253,6 +268,7 @@ const swordQuiverOutputStrings = {
     ja: '横 / 後方 へ',
     cn: '去侧 / 后边',
     ko: '양옆 / 뒤로',
+    tc: '去側 / 後面',
   },
 } as const;
 
@@ -264,6 +280,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '自分から遠い人に扇範囲',
     cn: '远雷点名',
     ko: '멀리 화살표 대상자',
+    tc: '遠雷點名',
   },
   proximateCurrent: {
     en: 'Near Cone on You',
@@ -272,6 +289,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '自分から近い人に扇範囲',
     cn: '近雷点名',
     ko: '가까이 화살표 대상자',
+    tc: '近雷點名',
   },
   spinningConductorSupport: {
     en: 'Small AoE on You',
@@ -280,6 +298,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '自分に小さい円範囲',
     cn: '小钢铁点名',
     ko: '작은 원형징 대상자',
+    tc: '小鋼鐵點名',
   },
   spinningConductorDPS: {
     en: 'Small AoE on You',
@@ -288,6 +307,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '自分に小さい円範囲',
     cn: '小钢铁点名',
     ko: '작은 원형징 대상자',
+    tc: '小鋼鐵點名',
   },
   roundhouseConductorSupport: {
     en: 'Donut AoE on You',
@@ -296,6 +316,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '自分にドーナツ範囲',
     cn: '月环点名',
     ko: '도넛징 대상자',
+    tc: '月環點名',
   },
   roundhouseConductorDPS: {
     en: 'Donut AoE on You',
@@ -304,6 +325,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '自分にドーナツ範囲',
     cn: '月环点名',
     ko: '도넛징 대상자',
+    tc: '月環點名',
   },
   colliderConductor: {
     en: 'Get Hit by Cone',
@@ -312,6 +334,7 @@ const conductorCurrentStringsNoStrat = {
     ja: '扇範囲に当たって',
     cn: '吃雷',
     ko: '화살표 장판 맞기',
+    tc: '吃雷',
   },
 } as const;
 
@@ -322,6 +345,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Devant au milieu (loin du cône)',
     cn: '中前 (远扇形)',
     ko: '앞 가운데 (멀리 화살표)',
+    tc: '中前 (遠扇形)',
   },
   proximateCurrent: {
     en: 'Front of Middle (Near Cone)',
@@ -329,6 +353,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Devant au milieu (près du cône)',
     cn: '中前 (近扇形)',
     ko: '앞 가운데 (가까이 화살표)',
+    tc: '中前 (近扇形)',
   },
   spinningConductorSupport: {
     en: 'Front Left (Small AoE)',
@@ -336,6 +361,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Devant à gauche (petite AoE)',
     cn: '左前 (小圈)',
     ko: '앞 왼쪽 (작은 원형징)',
+    tc: '左前 (小圈)',
   },
   spinningConductorDPS: {
     en: 'Front Right (Small AoE)',
@@ -343,6 +369,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Devant à droite (petite AoE)',
     cn: '右前 (小圈)',
     ko: '앞 오른쪽 (작은 원형징)',
+    tc: '右前 (小圈)',
   },
   roundhouseConductorSupport: {
     en: 'Front Left (Donut AoE)',
@@ -350,6 +377,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Devant à gauche (AoE en donut)',
     cn: '左前 (月环)',
     ko: '앞 왼쪽 (도넛징)',
+    tc: '左前 (月環)',
   },
   roundhouseConductorDPS: {
     en: 'Front Right (Donut AoE)',
@@ -357,6 +385,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Devant à droite (AoE en donut)',
     cn: '右前 (月环)',
     ko: '앞 오른쪽 (도넛징)',
+    tc: '右前 (月環)',
   },
   colliderConductor: {
     en: 'Middle, Behind Current (Get Hit by Cone)',
@@ -364,6 +393,7 @@ const conductorCurrentStringsDNStrat = {
     fr: 'Milieu à l\'arrière (prenez le cône)',
     cn: '中间, 扇形后 (吃扇形)',
     ko: '가운데, 화살표 뒤 (화살표 장판 맞기)',
+    tc: '中間, 扇形後 (吃扇形)',
   },
 } as const;
 
@@ -431,6 +461,7 @@ const triggerSet: TriggerSet<Data> = {
         fr: 'Mécanique pour Accumulation d\'ions',
         cn: '离子簇 Debuff 策略',
         ko: '이온 클러스터 디버프 전략',
+        tc: '離子簇 Debuff 策略',
       },
       comment: {
         en: `Strategy for resolving debuffs during Ion Cluster.
@@ -453,6 +484,10 @@ const triggerSet: TriggerSet<Data> = {
 
              없음: 디버프만 알림, 전략 없음.
              DN: <a href="https://pastebin.com/teF90QGm" target="_blank">shabin pastebin</a>기반의 고정 위치 사용.`,
+        tc: `在 離子簇 機制中處理 debuff 的策略。
+
+             無: 只播報 Debuff, 不使用策略。
+             DN: 使用基於 <a href="https://pastebin.com/teF90QGm" target="_blank">shabin pastebin</a> 的固定站位。`,
       },
       type: 'select',
       options: {
@@ -476,6 +511,10 @@ const triggerSet: TriggerSet<Data> = {
           '없음': 'none',
           'DN': 'DN',
         },
+        tc: {
+          '無': 'none',
+          'DN': 'DN',
+        },
       },
       default: 'none',
     },
@@ -487,6 +526,7 @@ const triggerSet: TriggerSet<Data> = {
         fr: 'Mécanique pour Piqué fulgurant',
         cn: '魔女狩猎诱导策略',
         ko: '마녀사냥 유도 전략',
+        tc: '魔女狩獵誘導策略',
       },
       comment: {
         en: `Strategy for baiting Witch Hunt AoEs.<br>
@@ -513,6 +553,11 @@ const triggerSet: TriggerSet<Data> = {
              없음: 파티 위치와 유도 위치를 모두 알림, 특별한 전략 없음.<br>
              DN: DN 업타임 전략. 탱커가 첫 번째 근접 유도를, 힐러가 첫 번째 원거리 유도를,
              근거리 딜러가 두 번째 근접 유도를, 마지막으로 원거리 딜러가 두 번째 원거리 유도를 합니다.`,
+        tc: `誘導魔女狩獵 AOE 的策略。<br>
+             無: 同時播報小隊和誘導位置，無特定策略。<br>
+             DN: DN uptime 策略, 優先級靈活, 坦克負責第一個近誘導,
+             治療負責第一個遠誘導, 近戰 DPS 負責第二個近誘導,
+             最後遠程 DPS 負責第二個遠誘導。`,
       },
       type: 'select',
       options: {
@@ -536,6 +581,10 @@ const triggerSet: TriggerSet<Data> = {
           '없음': 'none',
           'DN': 'DN',
         },
+        tc: {
+          '無': 'none',
+          'DN': 'DN',
+        },
       },
       default: 'none',
     },
@@ -547,6 +596,7 @@ const triggerSet: TriggerSet<Data> = {
         fr: 'Mécanique pour Diablerie obscure - Aurore',
         cn: '黑色安息日的日出策略',
         ko: '검은 안식일: 일출 전략',
+        tc: '黑色安息日的日出策略',
       },
       comment: {
         en: `Strategy for resolving Sunrise Sabbath.<br>
@@ -575,6 +625,11 @@ const triggerSet: TriggerSet<Data> = {
              탱/힐은 북서부터 반시계 방향으로 기둥이나 대포를 찾습니다.
              딜러는 북쪽부터 시계 방향으로 기둥이나 대포를 찾습니다.
         `,
+        tc: `處理黑色安息日的日出的策略。<br>
+             無: 播報 Debuff, 雙塔生成, 和匹配的塔。<br>
+             Snakes Prio: 流行於北美招募版的優先級系統。
+             T 奶玩家從西北方開始逆時針尋找塔或炮。
+             DPS 玩家從正北方開始順時針尋找塔或炮。`,
       },
       type: 'select',
       options: {
@@ -598,6 +653,10 @@ const triggerSet: TriggerSet<Data> = {
           '없음': 'none',
           'Snakes Prio': 'snakePrio',
         },
+        tc: {
+          '無': 'none',
+          'Snakes Prio': 'snakePrio',
+        },
       },
       default: 'none',
     },
@@ -609,6 +668,7 @@ const triggerSet: TriggerSet<Data> = {
         fr: 'Diablerie obscure - Aurore Uptime - Bait des canons',
         cn: '黑色安息日的日出 使用 uptime 炮诱导打法',
         ko: '검은 안식일: 일출 업타임 대포 유도',
+        tc: '黑色安息日的日出 使用 uptime 炮誘導打法',
       },
       comment: {
         en: 'Call cannon baits assuming the AutoCAD waymark uptime cannon bait spots.',
@@ -616,6 +676,7 @@ const triggerSet: TriggerSet<Data> = {
         fr: 'Affiche les bait des canons selon les marqueurs AutoCAD.',
         cn: '基于 AutoCAD 标点的 uptime 炮诱导打法播报炮诱导。',
         ko: 'AutoCAD 지면 표식을 기반으로 대포 유도를 알립니다.',
+        tc: '基於 AutoCAD 標點的 uptime 炮誘導打法播報炮誘導。',
       },
       type: 'checkbox',
       default: false,
@@ -719,6 +780,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '縦と横の範囲を避けて',
           cn: '躲避前方激光 + 场边直线AoE',
           ko: '전방 + 양옆 레이저 피하기',
+          tc: '躲避前方雷射 + 場邊直線AoE',
         },
       },
     },
@@ -752,6 +814,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '中へ',
           cn: '内场',
           ko: '안',
+          tc: '內場',
         },
         out: {
           en: 'Out',
@@ -760,6 +823,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外へ',
           cn: '外场',
           ko: '밖',
+          tc: '外場',
         },
         spreadAvoid: {
           en: 'Spread (Avoid Side Cleaves)',
@@ -768,6 +832,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散開 (横の範囲を避けて)',
           cn: '分散 (注意场边直线AoE)',
           ko: '산개 (양옆 레이저 피하기)',
+          tc: '分散 (注意場邊直線AoE)',
         },
         combo: {
           en: '${inOut} + ${spread}',
@@ -776,6 +841,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${inOut} + ${spread}',
           cn: '${inOut} + ${spread}',
           ko: '${inOut} + ${spread}',
+          tc: '${inOut} + ${spread}',
         },
       },
     },
@@ -818,6 +884,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '中へ',
           cn: '内场',
           ko: '안',
+          tc: '內場',
         },
         out: {
           en: 'Out',
@@ -826,6 +893,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外へ',
           cn: '外场',
           ko: '밖',
+          tc: '外場',
         },
         near: {
           en: 'Spread (Be Closer)',
@@ -834,6 +902,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散開(近づく)',
           cn: '靠近分散',
           ko: '산개 (가까이)',
+          tc: '靠近分散',
         },
         far: {
           en: 'Spread (Be Further)',
@@ -842,6 +911,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散開(離れる)',
           cn: '远离分散',
           ko: '산개 (멀리)',
+          tc: '遠離分散',
         },
         combo: {
           en: '${inOut} + ${spread}',
@@ -850,6 +920,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${inOut} + ${spread}',
           cn: '${inOut} + ${spread}',
           ko: '${inOut} + ${spread}',
+          tc: '${inOut} + ${spread}',
         },
       },
     },
@@ -916,6 +987,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '中へ',
           cn: '月环',
           ko: '안',
+          tc: '月環',
         },
         out: {
           en: 'Out',
@@ -924,6 +996,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '外へ',
           cn: '钢铁',
           ko: '밖',
+          tc: '鋼鐵',
         },
         near: {
           en: 'Close',
@@ -932,6 +1005,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '近づく',
           cn: '近',
           ko: '가까이',
+          tc: '近',
         },
         far: {
           en: 'Far',
@@ -940,6 +1014,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '離れる',
           cn: '远',
           ko: '멀리',
+          tc: '遠',
         },
         tank: {
           en: 'Tanks',
@@ -947,6 +1022,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Tanks',
           cn: '坦克',
           ko: '탱커',
+          tc: '坦克',
         },
         healer: {
           en: 'Healers',
@@ -954,6 +1030,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Healers',
           cn: '治疗',
           ko: '힐러',
+          tc: '治療',
         },
         melee: {
           en: 'Melee',
@@ -961,6 +1038,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Melée',
           cn: '近战',
           ko: '근딜',
+          tc: '近戰',
         },
         ranged: {
           en: 'Ranged',
@@ -968,6 +1046,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Distant',
           cn: '远程',
           ko: '원딜',
+          tc: '遠程',
         },
         separator: {
           en: ' => ',
@@ -976,6 +1055,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: ' => ',
           cn: ' => ',
           ko: ' => ',
+          tc: '=>',
         },
         baitStep: {
           en: '${inOut} (${bait})',
@@ -984,6 +1064,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${inOut} (${bait})',
           cn: '${inOut} (${bait})',
           ko: '${inOut} (${bait})',
+          tc: '${inOut} (${bait})',
         },
         baitCombo: {
           en: 'Baits: ${allBaits}',
@@ -992,6 +1073,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '誘導: ${allBaits}',
           cn: '引导: ${allBaits}',
           ko: '유도: ${allBaits}',
+          tc: '引導: ${allBaits}',
         },
         unknown: Outputs.unknown,
       },
@@ -1234,6 +1316,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} => ${mech}',
           cn: '${dir} => ${mech}',
           ko: '${dir} => ${mech}',
+          tc: '${dir} => ${mech}',
         },
       },
     },
@@ -1279,6 +1362,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '短いデバフ (同じく/ ${same})',
           cn: '短 Debuff (和 ${same})',
           ko: '짧은 디버프 (+ ${same})',
+          tc: '短 Debuff (和 ${same})',
         },
         long: {
           en: 'Long Debuff (w/ ${same})',
@@ -1287,6 +1371,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '長いデバフ (同じく/ ${same})',
           cn: '长 Debuff (和 ${same})',
           ko: '긴 디버프 (+ ${same})',
+          tc: '長 Debuff (和 ${same})',
         },
       },
     },
@@ -1313,6 +1398,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${times} 回のほう (後)',
           cn: '(稍后 ${times} 层)',
           ko: '(${times} 스택)',
+          tc: '(稍後 ${times} 層)',
         },
       },
     },
@@ -1333,6 +1419,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '散開 (${stacks} 回のほう)',
           cn: '分散 (${stacks} 层)',
           ko: '산개 (${stacks} 스택)',
+          tc: '分散 (${stacks} 層)',
         },
       },
     },
@@ -1379,6 +1466,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '(${stacks} 回のほう)',
           cn: '(${stacks} 层雷)',
           ko: '(나중에 ${stacks} 스택)',
+          tc: '(${stacks} 層雷)',
         },
         combo: {
           en: '${dir} => ${mech} ${remind}',
@@ -1387,6 +1475,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} => ${mech} ${remind}',
           cn: '${dir} => ${mech} ${remind}',
           ko: '${dir} => ${mech} ${remind}',
+          tc: '${dir} => ${mech} ${remind}',
         },
       },
     },
@@ -1443,6 +1532,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} - ボス近くで受けて',
           cn: '${dir} - 站在最前面',
           ko: '${dir} - 맨 앞으로',
+          tc: '${dir} - 站在最前面',
         },
         nonTank: {
           en: '${dir} - Behind Tank',
@@ -1451,6 +1541,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} - タンクの後ろへ',
           cn: '${dir} - 站坦克后面',
           ko: '${dir} - 탱커 뒤로',
+          tc: '${dir} - 站坦克後面',
         },
       },
     },
@@ -1471,6 +1562,7 @@ const triggerSet: TriggerSet<Data> = {
             ja: '場所を交代',
             cn: '穿',
             ko: '교체',
+            tc: '穿',
           },
           stay: {
             en: 'Stay',
@@ -1479,6 +1571,7 @@ const triggerSet: TriggerSet<Data> = {
             ja: 'そのまま',
             cn: '停',
             ko: '그대로',
+            tc: '停',
           },
           unknown: Outputs.unknown,
           tank: {
@@ -1488,6 +1581,7 @@ const triggerSet: TriggerSet<Data> = {
             ja: '${dir} - ボス近くで受けて',
             cn: '${dir} - 站在最前面',
             ko: '${dir} - 맨 앞으로',
+            tc: '${dir} - 站在最前面',
           },
           nonTank: {
             en: '${dir} - Behind Tank',
@@ -1496,6 +1590,7 @@ const triggerSet: TriggerSet<Data> = {
             ja: '${dir} - タンクの後ろへ',
             cn: '${dir} - 站坦克后面',
             ko: '${dir} - 탱커 뒤로',
+            tc: '${dir} - 站坦克後面',
           },
         };
 
@@ -1568,6 +1663,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '相方と避ける x7',
           cn: '与搭档躲避 7 次扇形',
           ko: '파트너와 함께 피하기 x7',
+          tc: '與搭檔躲避 7 次扇形',
         },
       },
     },
@@ -1616,6 +1712,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '相方の前へ',
           cn: '站在搭档前面 (挡枪)',
           ko: '파트너 앞으로',
+          tc: '站在搭檔前面 (擋槍)',
         },
         far: {
           en: 'Behind Partner',
@@ -1624,6 +1721,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '相方の後ろへ',
           cn: '站在搭档后面',
           ko: '파트너 뒤로',
+          tc: '站在搭檔後面',
         },
       },
     },
@@ -1721,6 +1819,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'デバフを渡して (${to})',
           cn: '传火 (${to})',
           ko: '디버프 전달 (${to})',
+          tc: '傳火 (${to})',
         },
         getDebuff: {
           en: 'Get Debuff',
@@ -1729,6 +1828,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'デバフを取って',
           cn: '接火',
           ko: '디버프 받기',
+          tc: '接火',
         },
       },
     },
@@ -1769,6 +1869,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'あとで: ${effect}',
           cn: '存储: ${effect}',
           ko: '저장: ${effect}',
+          tc: '儲存: ${effect}',
         },
       },
     },
@@ -1798,6 +1899,7 @@ const triggerSet: TriggerSet<Data> = {
             ja: 'タンク LB3!',
             cn: '坦克 LB!',
             ko: '탱 3단 리밋!',
+            tc: '坦克 LB!',
           },
         };
 
@@ -1812,10 +1914,7 @@ const triggerSet: TriggerSet<Data> = {
       netRegex: { id: '013C', capture: false },
       condition: (data) => data.phase === 'crosstail',
       suppressSeconds: 1,
-      infoText: (_data, _matches, output) => output.stacks!(),
-      outputStrings: {
-        stacks: Outputs.healerGroups,
-      },
+      response: Responses.healerGroups(),
     },
 
     // Twilight Sabbath
@@ -1891,6 +1990,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${bait} => ${dir1} => ${dir2}',
           cn: '${bait} => ${dir1} => ${dir2}',
           ko: '${bait} => ${dir1} => ${dir2}',
+          tc: '${bait} => ${dir1} => ${dir2}',
         },
       },
     },
@@ -1920,6 +2020,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} => ${middleSides}',
           cn: '${dir} => ${middleSides}',
           ko: '${dir} => ${middleSides}',
+          tc: '${dir} => ${middleSides}',
         },
       },
     },
@@ -1994,6 +2095,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} + ${type} + ${mech}',
           cn: '${dir} + ${type} + ${mech}',
           ko: '${dir} + ${type} + ${mech}',
+          tc: '${dir} + ${type} + ${mech}',
         },
         guns: {
           en: 'Avoid Line',
@@ -2002,6 +2104,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ビームを避けて',
           cn: '躲避直线',
           ko: '직선 장판 피하기',
+          tc: '躲避直線',
         },
         wings: {
           en: 'Donut',
@@ -2010,6 +2113,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ドーナツ',
           cn: '月环',
           ko: '도넛 장판',
+          tc: '月環',
         },
         cardinals: Outputs.cardinals,
         intercards: Outputs.intercards,
@@ -2048,6 +2152,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${dir} + ${type} + ${mech}',
           cn: '${dir} + ${type} + ${mech}',
           ko: '${dir} + ${type} + ${mech}',
+          tc: '${dir} + ${type} + ${mech}',
         },
         guns: {
           en: 'Avoid Line',
@@ -2056,6 +2161,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ビームを避けて',
           cn: '躲避直线',
           ko: '직선 장판 피하기',
+          tc: '躲避直線',
         },
         wings: {
           en: 'Donut',
@@ -2064,6 +2170,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: 'ドーナツ',
           cn: '月环',
           ko: '도넛 장판',
+          tc: '月環',
         },
         cardinals: Outputs.cardinals,
         intercards: Outputs.intercards,
@@ -2094,6 +2201,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '塔の位置へ',
           cn: '八人塔站位',
           ko: '기둥 자리잡기',
+          tc: '八人塔站位',
         },
       },
     },
@@ -2173,6 +2281,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${side}: まずは ${first} から',
           cn: '${side}: 从 ${first} 开始',
           ko: '${side}: ${first}에서 시작',
+          tc: '${side}: 從 ${first} 開始',
         },
         unknown: Outputs.unknown,
       },
@@ -2215,6 +2324,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: ' => ',
           cn: ' => ',
           ko: ' => ',
+          tc: '=>',
         },
         safe: {
           en: '${side} Side: ${order}',
@@ -2223,6 +2333,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '${side} : ${order}',
           cn: '${side} 侧: ${order}',
           ko: '${side}: ${order}',
+          tc: '${side} 側: ${order}',
         },
         unknown: Outputs.unknown,
       },
@@ -2255,6 +2366,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '長い黄色デバフ (塔から)',
           cn: '长黄 (先踩塔)',
           ko: '긴 노란색 디버프 (기둥 먼저)',
+          tc: '長黃 (先踩塔)',
         },
         blueLong: {
           en: 'Long Blue Debuff (Towers First)',
@@ -2263,6 +2375,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '長い青色デバフ (塔から)',
           cn: '长蓝 (先踩塔)',
           ko: '긴 파란색 디버프 (기둥 먼저)',
+          tc: '長藍 (先踩塔)',
         },
         yellowShort: {
           en: 'Short Yellow Debuff (Cannons First)',
@@ -2271,6 +2384,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '短い黄色デバフ (ビーム誘導から)',
           cn: '短黄 (先引导)',
           ko: '짧은 노란색 디버프 (대포 먼저)',
+          tc: '短黃 (先引導)',
         },
         blueShort: {
           en: 'Short Blue Debuff (Cannons First)',
@@ -2279,6 +2393,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '短い青色デバフ (ビーム誘導から)',
           cn: '短蓝 (先引导)',
           ko: '짧은 파란색 디버프 (대포 먼저)',
+          tc: '短藍 (先引導)',
         },
       },
     },
@@ -2453,6 +2568,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '南/北',
           cn: '上/下',
           ko: '남/북',
+          tc: '北/南',
         },
         eastWest: {
           en: 'E/W',
@@ -2461,6 +2577,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '東/西',
           cn: '左/右',
           ko: '동/서',
+          tc: '東/西',
         },
         yellowLong: {
           en: 'Soak Tower (${bait})',
@@ -2469,6 +2586,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '塔を踏んで (${bait})',
           cn: '踩塔 (${bait})',
           ko: '기둥 밟기 (${bait})',
+          tc: '踩塔 (${bait})',
         },
         blueLong: {
           en: 'Soak Tower (${bait})',
@@ -2477,6 +2595,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '塔を踏んで (${bait})',
           cn: '踩塔 (${bait})',
           ko: '기둥 밟기 (${bait})',
+          tc: '踩塔 (${bait})',
         },
         baitNormal: {
           en: 'Point ${bait}',
@@ -2484,6 +2603,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Pointez ${bait}',
           cn: '指向 (${bait})',
           ko: '${bait}쪽으로',
+          tc: '指向 (${bait})',
         },
         baitUptime: {
           en: 'Stand ${bait} side',
@@ -2491,6 +2611,7 @@ const triggerSet: TriggerSet<Data> = {
           fr: 'Restez côté ${bait}',
           cn: '站 ${bait} 侧',
           ko: '${bait}쪽 면에 서기',
+          tc: '站 ${bait} 側',
         },
         yellowShort: {
           en: 'Blue Cannon (${loc}) - ${bait}',
@@ -2499,6 +2620,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '青いビーム誘導 (${loc}) - ${bait}',
           cn: '蓝激光 (${loc}) - ${bait}',
           ko: '파란 대포 (${loc}) - ${bait}',
+          tc: '藍雷射 (${loc}) - ${bait}',
         },
         blueShort: {
           en: 'Yellow Cannon (${loc}) - Point ${bait}',
@@ -2507,6 +2629,7 @@ const triggerSet: TriggerSet<Data> = {
           ja: '黄色いビーム誘導 (${loc}) - ${bait}',
           cn: '黄激光 (${loc}) - ${bait}',
           ko: '노란 대포 (${loc}) - ${bait}',
+          tc: '黃雷射 (${loc}) - ${bait}',
         },
       },
     },
@@ -2833,6 +2956,86 @@ const triggerSet: TriggerSet<Data> = {
         '\\(spread \\+ tethers\\)': '(分散 + 连线)',
         '\\(third mines hit\\)': '(第三轮魔方充能)',
         '\\(third set\\)': '(第三轮充能)',
+      },
+    },
+    {
+      'locale': 'tc',
+      'replaceSync': {
+        'Electromine': '雷轉質礦組',
+        'Wicked Replica': '狡雷的幻影',
+        'Wicked Thunder': '狡雷',
+      },
+      'replaceText': {
+        '(?<! )Spark': '電火花',
+        '(?<! )Witch Hunt': '魔女狩獵',
+        'Azure Thunder': '青雷',
+        'Bewitching Flight': '魔女迴翔',
+        'Burst': '爆炸',
+        'Cannonbolt': '聚雷加農砲',
+        'Chain Lightning': '雷光鏈',
+        'Conduction Point': '指向雷',
+        'Cross Tail Switch': '交叉亂尾擊',
+        'Eight Star': '八雷星',
+        'Electrifying Witch Hunt': '驚電魔女狩獵',
+        'Electron Stream': '電子流',
+        'Electrope Edge': '雷轉質展開',
+        'Electrope Transplant': '雷轉質移植',
+        'Flame Slash': '火焰斬',
+        'Forked Fissures': '驚電裂隙',
+        'Forked Lightning': '叉形閃電',
+        'Four Star': '四雷星',
+        'Fulminous Field': '雷電力場',
+        'Impact': '衝擊',
+        'Ion Cluster': '離子簇',
+        'Laceration': '斬擊',
+        'Left Roll': '左轉',
+        'Lightning Cage': '電牢籠',
+        'Lightning Vortex': '電閃圓',
+        'Midnight Sabbath': '黑色安息日的午夜',
+        'Mustard Bomb': '芥末炸彈',
+        'Narrowing Witch Hunt': '環圓式魔女狩獵',
+        'Raining Swords': '劍雨',
+        'Right Roll': '右轉',
+        'Sidewise Spark': '側方電火花',
+        'Soulshock': '靈魂震盪',
+        'Stampeding Thunder': '奔雷砲',
+        'Sunrise Sabbath': '黑色安息日的日出',
+        'Switch of Tides': '尖尾濺',
+        'Sword Quiver': '劍舞',
+        'Tail Thrust': '尖尾刺',
+        'Thundering': '電閃環',
+        'Twilight Sabbath': '黑色安息日的日落',
+        'Wicked Blaze': '狡詭熾焰',
+        'Wicked Bolt': '狡詭落雷',
+        'Wicked Fire': '狡詭火炎',
+        'Wicked Flare': '狡詭火光',
+        'Wicked Jolt': '狡詭搖盪',
+        'Wicked Spark': '狡詭電火花',
+        'Wicked Special': '狡詭特技',
+        'Wicked Thunder': '狡詭雷電',
+        'Widening Witch Hunt': '圓環式魔女狩獵',
+        'Witchgleam': '閃耀電火花',
+        'Wrath of Zeus': '宙斯之怒',
+        '\\(debuffs resolve\\)': '(處理 Debuff)',
+        '\\(debuffs\\)': '(Debuff)',
+        '\\(enrage\\)': '(狂暴)',
+        '\\(first mines hit\\)': '(第一輪魔方充能)',
+        '\\(first set\\)': '(第一輪充能)',
+        '\\(first sparks detonate\\)': '(第一輪火花引爆)',
+        '\\(first towers/cannons resolve\\)': '(第一輪塔/炮)',
+        '\\(floor no more\\)': '(地板消失)',
+        '\\(fourth set\\)': '(第四輪充能)',
+        '\\(mines\\)': '(魔方)',
+        '\\(players\\)': '(玩家)',
+        '\\(puddles drop\\)': '(放圈)',
+        '\\(second hit\\)': '(第二擊)',
+        '\\(second mines hit\\)': '(第二輪魔方充能)',
+        '\\(second set\\)': '(第二輪充能)',
+        '\\(second sparks detonate\\)': '(第二輪火花引爆)',
+        '\\(second towers/cannons resolve\\)': '(第二輪塔/炮)',
+        '\\(spread \\+ tethers\\)': '(分散 + 連線)',
+        '\\(third mines hit\\)': '(第三輪魔方充能)',
+        '\\(third set\\)': '(第三輪充能)',
       },
     },
     {

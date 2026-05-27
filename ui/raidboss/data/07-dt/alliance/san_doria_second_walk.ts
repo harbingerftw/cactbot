@@ -45,10 +45,13 @@ const kirinSequenceOutputStrings = {
     en: 'Away from Arms (on boss hitbox)',
   },
   awayTethered: {
-    en: 'Away from tethered arm (${dir})',
+    en: '${dir} away from tethered arm',
   },
   flank: {
     en: 'Max melee on flank',
+  },
+  maxMelee: {
+    en: 'Max melee $dir',
   },
   // dodge: {
   //   en: 'Dodge'
@@ -56,6 +59,7 @@ const kirinSequenceOutputStrings = {
   next: Outputs.next,
   east: Outputs.east,
   west: Outputs.west,
+  north: Outputs.north,
 };
 
 const kamlanautElementalOutputStrings: { [key in KamElement]: LocaleText } = {
@@ -137,11 +141,10 @@ const kamlanautCrystalNpcIds: { [key: string]: KamElement } = {
   '1EBE89': 'lightning',
 };
 
-
 const kirinSequenceInfoOutput = (
   sequence: KirinSequenceStep[],
   ability: string[],
-  direction?: 'east' | 'west',
+  direction?: 'east' | 'west' | 'north',
 ) => {
   return (data: Data, _matches: Matches, output: Output) => {
     data.kirinSequencedSafeCallouts = {};
@@ -158,7 +161,6 @@ const kirinSequenceInfoOutput = (
       }
     });
     data.kirinSequenceCalls = items.length - 1;
-    // console.table(data.kirinSequencedSafeCallouts);
     const result = items.join(output.next!());
     console.log(result);
     return result;
@@ -189,7 +191,7 @@ type OrbLocation = 'north' | 'middle' | 'south';
 
 const sublimeElementsBladeSafespot = (
   blades: { [p: string]: KamBlade },
-  elements: KamElement[]
+  elements: KamElement[],
 ) => {
   const cols: Record<number, string | null> = { [-220]: null, [-200]: null, [-180]: null };
   const rows: Record<number, string | null> = { 130: null, 150: null, 170: null };
@@ -250,6 +252,7 @@ const OmegaManaScreenPatterns: { [key: string]: { [key in OrbLocation]?: string 
 export interface Data extends RaidbossData {
   tankbusterTargets: string[];
   combatantData: PluginCombatantState[];
+  kirinInSynchronizedSeq: boolean;
   kirinSequencedSafeCallouts: { [key: string]: string };
   kirinSequenceCalls: number;
   omegaOrbs: OrbLocation[];
@@ -270,6 +273,7 @@ const triggerSet: TriggerSet<Data> = {
     return {
       tankbusterTargets: [],
       combatantData: [],
+      kirinInSynchronizedSeq: false,
       kirinSequencedSafeCallouts: {},
       kirinSequenceCalls: 0,
       omegaOrbs: [],
@@ -294,13 +298,13 @@ const triggerSet: TriggerSet<Data> = {
     {
       id: 'San dOria Second Walk Faithbound Kirin Crimson Riddle Front',
       type: 'StartsUsing',
-      netRegex: { id: ['AFF4'], source: 'Faithbound Kirin', capture: false },
+      netRegex: { id: 'AFF4', source: 'Faithbound Kirin', capture: false },
       response: Responses.getBehind(),
     },
     {
       id: 'San dOria Second Walk Faithbound Kirin Crimson Riddle Rear',
       type: 'StartsUsing',
-      netRegex: { id: ['AFF5'], source: 'Faithbound Kirin', capture: false },
+      netRegex: { id: 'AFF5', source: 'Faithbound Kirin', capture: false },
       response: Responses.goFront(),
     },
     {
@@ -323,7 +327,7 @@ const triggerSet: TriggerSet<Data> = {
       },
       outputStrings: {
         tankTower: {
-          en: 'Soak Tank Tower',
+          en: 'Soak Tank Tower!',
         },
       },
     },
@@ -357,20 +361,74 @@ const triggerSet: TriggerSet<Data> = {
       //     en: 'dodge => away from Arms (on boss hitbox)',
     },
     {
-      // ADA0 - mech cast
-      // ADB0 - preview line aoes from boss
-      // ADAD - preview out aoe -OR- ADAE (Striking Right)/ADAF (Left)
-      // ADA1 - line aoes from boss (Synchronized Sequence)
-      // AD9C,AD9B - line aoes from arms
-      // ADA2 - out (Wringer) -OR- ADA3 (Striking Right)/ADA4 *probably
-      // ADA8 - under (Dead Wringer) ADA9 -or- (Smiting Right)
+      // Sides -> north on hitbox (away from arms) -> west max melee (away from tethered arm)
+      // -- (I don't think it can use ADAF?)
+      // 0.00s StartsCasting ADA0 Synchronized Sequence (9.100s)
+      // 0.00s StartsCasting ADA1 Synchronized Sequence (9.700s)
+      // 0.00s StartsCasting ADA1 Synchronized Sequence (9.700s)
+      // 1.07s StartsCasting ADB0 Synchronized Strike (2.700s)
+      // 1.07s StartsCasting ADB0 Synchronized Strike (2.700s)
+      // 5.08s StartsCasting ADAE Striking Right (2.700s)
+      // 9.45s StartsCasting AD9C Synchronized Smite (4.700s)
+      // 9.45s StartsCasting AD9B Synchronized Smite (4.700s)
+      // 12.48s StartsCasting ADA3 Striking Right (1.700s)
+      // 17.56s StartsCasting ADA9 Smiting Right (1.700s)
+      // ------------------------
+      // sides -> away from boss and arms -> under boss
+      //  0.00s StartsCasting ADA0 Synchronized Sequence (9.100s)
+      //  0.00s StartsCasting ADA1 Synchronized Sequence (9.700s)
+      //  0.00s StartsCasting ADA1 Synchronized Sequence (9.700s)
+      //  1.02s StartsCasting ADB0 Synchronized Strike (2.700s)
+      //  1.02s StartsCasting ADB0 Synchronized Strike (2.700s)
+      //  5.03s StartsCasting ADAD Wringer (2.700s)
+      //  9.49s StartsCasting AD9C Synchronized Smite (4.700s)
+      //  9.49s StartsCasting AD9B Synchronized Smite (4.700s)
+      // 12.52s StartsCasting ADA2 Wringer (1.700s)
+      // ------------------------
+      //
       id: 'San dOria Second Walk Faithbound Kirin Synchronized Sequence',
       type: 'StartsUsing',
       netRegex: { id: 'ADA0', source: 'Faithbound Kirin', capture: false },
-      durationSeconds: 10,
-      infoText: kirinSequenceInfoOutput(['sides', 'awayBossArms', 'under'], ['_', 'ADA1', 'ADA2']),
-      outputStrings: kirinSequenceOutputStrings,
+      run: (data) => {
+        console.info('SEQUENCE START');
+        data.kirinInSynchronizedSeq = true;
+      },
+      // infoText: kirinSequenceInfoOutput(['sides', 'awayBossArms', 'under'], ['_', 'ADA1', 'ADA2']),
+      // outputStrings: kirinSequenceOutputStrings,
       //     en: 'Sides => Away from boss & arms => Under boss',
+    },
+    {
+      // Wringer or Striking Right preview mechanic
+      id: 'San dOria Second Walk Faithbound Kirin Synchronized Sequence Part2',
+      type: 'StartsUsing',
+      netRegex: { id: ['ADAE', 'ADAD'], capture: false },
+      condition: (data) => {
+        return data.kirinInSynchronizedSeq;
+      },
+      durationSeconds: 8,
+      infoText: (data, matches, output) => {
+        if (matches.id === 'ADAE') {
+          // striking right
+          data.kirinSequencedSafeCallouts['ADA1'] = output.maxMelee!({ dir: output.north!() });
+          data.kirinSequencedSafeCallouts['ADA3'] = output.awayTethered!({ dir: output.west!() });
+          data.kirinSequenceCalls = 2;
+          return [
+            output.sides!(),
+            output.maxMelee!({ dir: output.north!() }),
+            output.awayTethered!({ dir: output.west!() }),
+          ].join(output.next!());
+        }
+        // wringer
+        data.kirinSequencedSafeCallouts['ADA1'] = output.awayBossArms!();
+        data.kirinSequencedSafeCallouts['ADA2'] = output.under!();
+        data.kirinSequenceCalls = 2;
+        return [
+          output.sides!(),
+          output.awayBossArms!(),
+          output.under!(),
+        ].join(output.next!());
+      },
+      outputStrings: kirinSequenceOutputStrings,
     },
     {
       // AD9D - mech cast
@@ -383,6 +441,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'San dOria Second Walk Faithbound Kirin Double Wringer',
       type: 'StartsUsing',
       netRegex: { id: 'AD9D', source: 'Faithbound Kirin', capture: false },
+      condition: (data) => {
+        return !data.kirinInSynchronizedSeq;
+      },
       durationSeconds: 10,
       infoText: kirinSequenceInfoOutput(['out', 'flank', 'under'], ['_', 'AD9D', 'ADA6']),
       outputStrings: kirinSequenceOutputStrings,
@@ -412,6 +473,9 @@ const triggerSet: TriggerSet<Data> = {
       id: 'San dOria Second Walk Faithbound Kirin Smiting Left Sequence',
       type: 'StartsUsing',
       netRegex: { id: 'AD9F', source: 'Faithbound Kirin', capture: false },
+      condition: (data) => {
+        return !data.kirinInSynchronizedSeq;
+      },
       durationSeconds: 12,
       infoText: kirinSequenceInfoOutput(['awayTethered', 'awayBoss', 'under'], [
         '_',
@@ -430,12 +494,12 @@ const triggerSet: TriggerSet<Data> = {
       infoText: kirinSequenceInfoOutput(['out', 'under'], ['_', 'AD92']),
       outputStrings: kirinSequenceOutputStrings,
     },
-
+    // Calls the next part of the current multi-part mechanic (triggers on the one proceeding action)
     {
       id: 'San dOria Second Walk Faithbound Kirin Sequenced Mechanics',
       type: 'Ability',
       netRegex: {
-        id: ['AD9D', 'ADA6', 'AD96', 'AD97', 'ADA1', 'AD9C', 'ADA2', 'AD9E', 'AD9F'],
+        id: ['AD9D', 'ADA6', 'AD96', 'AD97', 'ADA1', 'AD9C', 'ADA2', 'ADA3', 'AD9E', 'AD9F'],
         source: 'Faithbound Kirin',
         capture: true,
       },
@@ -445,11 +509,19 @@ const triggerSet: TriggerSet<Data> = {
         if (!Object.keys(data.kirinSequencedSafeCallouts).includes(matches.id)) {
           return;
         }
+        // if (data.kirinInSynchronizedSeq && ['ADA1', 'ADA2', 'ADA3'].includes(matches.id)) {
+        //   // todo: this is wrong
+        //   return;
+        // }
         const call = data.kirinSequencedSafeCallouts[matches.id];
         if (call === undefined) {
           throw new UnreachableCode();
         }
         data.kirinSequenceCalls--;
+        if (data.kirinSequenceCalls === 0 && data.kirinInSynchronizedSeq) {
+          console.info('SEQUENCE OVER!');
+          data.kirinInSynchronizedSeq = false;
+        }
         console.info(`SEQMECH - ${matches.ability} ${matches.id} => ${call}`);
         return call;
       },
@@ -462,19 +534,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'San dOria Second Walk Faithbound Kirin Eastwind Wheel',
       type: 'StartsUsing',
       netRegex: { id: ['AD80', 'AD81'], source: 'Dawnbound Seiryu' },
-      // promise: async (data, matches) => {
-      //   data.combatantData = [];
-      //
-      //   data.combatantData = (await callOverlayHandler({
-      //     call: 'getCombatants',
-      //     ids: [parseInt(matches.sourceId, 16)],
-      //   })).combatants;
-      // },
       infoText: (_data, matches, output) => {
-        // const [combatant] = data.combatantData;
-        // if (combatant === undefined || data.combatantData.length !== 1)
-        //   return; //todo: remove me after verifying not needed
-        // Seiryu only spawns east or south but can spin either way so just +/-1 depending on the rotation.
         const x = parseFloat(matches.x);
         const y = parseFloat(matches.y);
         const rotation = matches.id === 'AD81' ? -1 : 1;
@@ -561,7 +621,7 @@ const triggerSet: TriggerSet<Data> = {
       id: 'San dOria Second Walk Faithbound Kirin Gloaming Gleam',
       type: 'StartsUsing',
       netRegex: { id: 'AD8F', source: 'Duskbound Byakko' },
-      alertText: (_data, matches, output) => {
+      infoText: (_data, matches, output) => {
         return output.sides!({ name: matches.source });
       },
       outputStrings: {
@@ -570,13 +630,13 @@ const triggerSet: TriggerSet<Data> = {
         },
       },
     },
-    {
-      // 3 random puddles on the floor
-      id: 'San dOria Second Walk Faithbound Kirin Quake',
-      type: 'StartsUsing',
-      netRegex: { id: ['B07B', 'B07C'], source: 'Faithbound Kirin', capture: false },
-      // response: Responses.aoe(), // todo: probs just remove
-    },
+    // {
+    //   // 3 random puddles on the floor
+    //   id: 'San dOria Second Walk Faithbound Kirin Quake',
+    //   type: 'StartsUsing',
+    //   netRegex: { id: ['B07B', 'B07C'], source: 'Faithbound Kirin', capture: false },
+    //   response: Responses.aoe(), // todo: probs just remove
+    // },
     // SUMMON Suzaku
     {
       // self-target AD8A
@@ -657,13 +717,7 @@ const triggerSet: TriggerSet<Data> = {
         const actors = (await callOverlayHandler({
           call: 'getCombatants',
         })).combatants;
-        const orbs = actors.filter((actor) =>
-          actor.BNpcID === 18714 && actor.ModelStatus === 0
-        );
-        // const visibleOrbs = orbs.filter((orb) => orb.ModelStatus === 0);
-        // const search = (visibleOrbs.length === 0) ? orbs : visibleOrbs;
-        // console.info(JSON.stringify(orbs));
-        // console.info('visible', JSON.stringify(visibleOrbs));
+        const orbs = actors.filter((actor) => actor.BNpcID === 18714 && actor.ModelStatus === 0);
         orbs.forEach((orb) => {
           const y = Number(orb.PosY);
           if (floatNear(y, 784))
@@ -673,7 +727,6 @@ const triggerSet: TriggerSet<Data> = {
           else if (floatNear(y, 816))
             data.omegaOrbs.push('south');
         });
-        // console.info(`Omega, the One Energy Orb: ${data.omegaOrbs.join(', ')}`);
       },
       infoText: (data, _matches, output) => {
         if (data.omegaOrbs.length === 1 && data.omegaManaScreens.length === 0 && data.omegaOrbs[0])
@@ -700,10 +753,9 @@ const triggerSet: TriggerSet<Data> = {
               return output.getLocation!({ dir: output[call]!() });
           }
         }
-        console.error(`Second Walk Omega, the One Energy Orb: unknown pattern 
-${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
-        return `UNKNOWN PATTERN ${data.omegaManaScreens.join(',')}`; // TODO: Remove me
-        // return output.avoid!();
+        console.error(`Second Walk Omega, the One Energy Orb: unknown pattern:`);
+        console.error(`${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
+        return output.avoid!();
       },
       outputStrings: {
         avoid: {
@@ -857,8 +909,8 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
       id: 'San dOria Second Walk Omega, the One Multi-missile',
       type: 'StartsUsing',
       netRegex: { id: 'AFEC', source: 'Omega, the One', capture: false },
-      countdownSeconds: 3.9,
       suppressSeconds: 1,
+      countdownSeconds: 3.9,
       soundVolume: 0,
       infoText: (_data, _matches, output) => output.text!(),
       outputStrings: {
@@ -942,6 +994,7 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
       // ACAE - aoe under boss => cleave + stack
       // ACB1 - cleave
       // ACC0 - stack Empyreal Banish IV
+      // TODO: Revist
       id: 'San dOria Second Walk Kam\'lanaut Great Wheel',
       type: 'Ability',
       netRegex: { id: 'ACAF', source: 'Kam\'lanaut', capture: false },
@@ -1064,7 +1117,8 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
         if (!element)
           throw new UnreachableCode();
 
-        const dir = Directions.output8Dir[Directions.hdgTo8DirNum(Number.parseFloat(matches.heading))];
+        const dir =
+          Directions.output8Dir[Directions.hdgTo8DirNum(Number.parseFloat(matches.heading))];
 
         if (isValidSiXDir(dir))
           data.kamElementalCones[dir] = element;
@@ -1079,14 +1133,14 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
       durationSeconds: 7,
       alertText: (data, _matches, output) => {
         // crossing line aoes, of which 2 or 3 expand
-        // console.info('elements:', data.kamElements);
-        // console.info('Blades:', data.kamElementalBlades);
-        // console.info('Cones:', data.kamElementalCones);
         if (data.kamElementalBlades['fire'] !== undefined) {
           const result = sublimeElementsBladeSafespot(data.kamElementalBlades, data.kamElements);
           console.info(result);
           if (result.length === 2) {
-            return output.nextToCross!({ ele1: output[result[0]!]!(), ele2: output[result[1]!]!() });
+            return output.nextToCross!({
+              ele1: output[result[0]!]!(),
+              ele2: output[result[1]!]!(),
+            });
           } else if (result.length === 1) {
             return output.nextToBlade!({ ele: output[result[0]!]!() });
           }
@@ -1094,9 +1148,6 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
           return 'Error';
         }
         // cone aoes from the boss, of which 2 or 3 expand
-        // Object.entries(data.kamElementalCones).forEach(([card, element]) => {
-        //   data.kamElementalCones[card as KamConeDirection] = data.kamElements.includes(element as KamElement) ? 'BAD' : element;
-        // });
         const dirs = Object.keys(data.kamElementalCones) as KamSixDirection[];
         for (let i = 0; i < dirs.length; i++) {
           const d1 = dirs[i]!;
@@ -1104,10 +1155,11 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
 
           const e1 = data.kamElementalCones[d1]!;
           const e2 = data.kamElementalCones[d2]!;
-          // console.info(i, d1, d2);
-          // console.info(i, e1, e2);
-          if (!data.kamElements.includes(e1) && e1 !== null && !data.kamElements.includes(e2) && e2 !== null) {
-            // console.info('>>>', e1, e2);
+
+          if (
+            !data.kamElements.includes(e1) && e1 !== null && !data.kamElements.includes(e2) &&
+            e2 !== null
+          ) {
             return output.betweenSlice!({ ele1: output[e1]!(), ele2: output[e2]!() });
           }
         }
@@ -1122,8 +1174,8 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
         nextToCross: {
           en: 'go to ${ele1} and ${ele2} intersection', // FEEDBACK: wording?
         },
-        ...kamlanautElementalOutputStrings
-      }
+        ...kamlanautElementalOutputStrings,
+      },
     },
     {
       id: 'San dOria Second Walk Kam\'lanaut Sublime Elements Cleanup',
@@ -1138,7 +1190,10 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
     {
       id: 'San dOria Second Walk Kam\'lanaut Crystal Spawn Collect',
       type: 'CombatantMemory',
-      netRegex: { change: 'Add', pair: [{ key: 'BNpcID', value: Object.keys(kamlanautCrystalNpcIds) }] },
+      netRegex: {
+        change: 'Add',
+        pair: [{ key: 'BNpcID', value: Object.keys(kamlanautCrystalNpcIds) }],
+      },
       run: (data, matches, _output) => {
         const element = kamlanautCrystalNpcIds[matches.pairBNpcID ?? ''];
         const x = Number.parseFloat(matches.pairPosX ?? '0');
@@ -1165,16 +1220,12 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
       },
       alertText: (data, _matches, output) => {
         const crystalCount = Object.keys(data.kamCrystalLocations).length;
-        // console.info('Crystals:', crystalCount);
-        console.info('Casts:', data.kamCrystalCasts);
-        // console.info('Locations:', data.kamCrystalLocations);
         if (crystalCount === 3 && data.kamCrystalCasts.length === 1) {
           // SIMPLE 3 CRYSTALS - only call which to avoid
           const explodingCrystal = data.kamCrystalCasts[0]!;
           const explodingEle = data.kamCrystalLocations[explodingCrystal];
           data.kamCrystalCasts = []; // reset for the next pattern
           if (explodingEle) {
-            console.info('Exploding:', explodingCrystal);
             return output.avoid!({ ele: output[explodingEle]!() });
           }
         } else if (crystalCount === 6 && data.kamCrystalCasts.length === 2) {
@@ -1188,7 +1239,7 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
             return;
           }
           const directDist = Math.abs(explodingIndex1 - explodingIndex2);
-          console.info('Exp index:', explodingIndex1, explodingIndex2, directDist);
+
           if (Math.min(directDist, 6 - directDist) === 3) {
             // TWO SAFE SPOTS - crystals far apart
             // crystals are farther apart, leaving 2 safe spots farthest from each crystal.
@@ -1196,8 +1247,7 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
             const lastCrystal = Math.max(explodingIndex1, explodingIndex2);
             const safe1 = data.kamCrystalLocations[kamSixDirections[(lastCrystal + 1) % 6]!];
             const safe2 = data.kamCrystalLocations[kamSixDirections[(lastCrystal + 2) % 6]!];
-            console.info('Exploding 2spot:', lastCrystal, safe1, safe2);
-            console.info('Safe6:', safe1, safe2);
+
             data.kamCrystalCasts = []; // reset
             if (safe1 && safe2)
               return output.betweenCrystals!({ ele1: output[safe1]!(), ele2: output[safe2]!() });
@@ -1208,7 +1258,7 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
           let safeIndex = (explodingIndex1 + 2) % 6;
           if (safeIndex === explodingIndex1 || safeIndex === explodingIndex2)
             safeIndex = (safeIndex + 2) % 6;
-          console.info('Exploding 1spot:', explodingIndex1, explodingIndex2, '->', safeIndex);
+
           const safe = data.kamCrystalLocations[kamSixDirections[safeIndex]!];
           data.kamCrystalCasts = []; // reset
           if (safe)
@@ -1225,8 +1275,8 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
         avoid: {
           en: 'Away from ${ele} crystal',
         },
-        ...kamlanautElementalOutputStrings
-      }
+        ...kamlanautElementalOutputStrings,
+      },
     },
     {
       // cleanup of crystals
@@ -1270,14 +1320,138 @@ ${data.omegaOrbs.join(', ')} ${data.omegaManaScreens.join(', ')}`);
         tankBusters: Outputs.tankBusters,
       },
     },
-
+    {
+      id: 'San dOria Second Walk Eald\'narche Cronos Sling In/Out',
+      type: 'StartsUsing',
+      netRegex: { id: ['AD4E', 'AD4D'], source: 'Eald\'narche' },
+      alertText: (_data, matches, output) => {
+        if (matches.id === 'AD4E') // under
+          return output.in!();
+        return output.out!();
+      },
+      outputStrings: {
+        in: Outputs.getUnder,
+        out: Outputs.outOfMelee,
+      },
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Cronos Sling Side',
+      type: 'StartsUsing',
+      netRegex: { id: ['AD4F', 'AD50'], source: 'Eald\'narche' },
+      delaySeconds: 7.0,
+      alertText: (_data, matches, output) => {
+        if (matches.id === 'AD4F') // Left safe
+          return output.leftFlank!();
+        return output.rightFlank!();
+      },
+      outputStrings: {
+        leftFlank: {
+          en: 'Left Flank',
+          de: 'Linke Flanke',
+          fr: 'Flanc gauche',
+          ja: '左',
+          cn: '左翼',
+          ko: '왼쪽',
+        },
+        rightFlank: {
+          en: 'Right Flank',
+          de: 'Rechte Flanke',
+          fr: 'Flanc droit',
+          ja: '右',
+          cn: '右翼',
+          ko: '오른쪽',
+        },
+      },
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Empyreal Vortex',
+      type: 'StartsUsing',
+      netRegex: { id: 'AD6D', source: 'Eald\'narche' },
+      response: Responses.aoe('alert'),
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Empyreal Vortex Spread',
+      type: 'StartsUsing',
+      netRegex: { id: 'AD70', source: 'Eald\'narche' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Warp',
+      type: 'StartsUsing',
+      netRegex: { id: 'AD56', source: 'Eald\'narche', capture: false },
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Go to teleport location => Behind boss',
+        },
+      },
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Omega Javelin',
+      type: 'StartsUsing',
+      netRegex: { id: 'AD5E', source: 'Eald\'narche', capture: false },
+      suppressSeconds: 1,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Avoid dropped crystals',
+        },
+      },
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Omega Javelin Spread',
+      type: 'HeadMarker',
+      netRegex: { id: '01D2' },
+      condition: Conditions.targetIsYou(),
+      response: Responses.spread(),
+    },
+    {
+      id: 'San dOria Second Walk Eald\'narche Gaea Stream',
+      type: 'StartsUsing',
+      netRegex: { id: 'AD53', source: 'Eald\'narche', capture: false },
+      suppressSeconds: 10,
+      infoText: (_data, _matches, output) => output.text!(),
+      outputStrings: {
+        text: {
+          en: 'Avoid exalines x6',
+        },
+      },
+    },
+    // {
+    //   // AD76 - tile explosions in p2
+    //   // AD77 - cast
+    //   // AD78 - tile explosions
+    //   id: 'San dOria Second Walk Eald\'narche Duplicate',
+    //   type: 'StartsUsing',
+    //   netRegex: { id: 'AD77', source: 'Eald\'narche', capture: false },
+    //   infoText: (_data, _matches, output) => {
+    //     const tileLocations = [
+    //       ['2C', '2D', '2E'],
+    //       ['2F', '30', '31'],
+    //       ['32', '33', '34'],
+    //     ];
+    //
+    //     const swapLocations = [
+    //       ['35', '36', '37'],
+    //       ['38', '39', '3A'],
+    //       ['3B', '3C', '3D'],
+    //     ];
+    //     return output.text!();
+    //   },
+    //   outputStrings: {
+    //     text: {
+    //       en: '??',
+    //     },
+    //   },
+    // },
     // ----------------------
     // Adds
     {
       id: 'San dOria Second Walk Detector Electroswipe',
       type: 'StartsUsing',
       netRegex: { id: 'AA27', source: 'Detector' },
-      suppressSeconds: 5,
+      suppressSeconds: 2,
       response: Responses.interruptIfPossible('info'),
     },
   ],

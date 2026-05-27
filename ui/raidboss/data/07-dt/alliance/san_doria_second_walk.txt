@@ -17,13 +17,13 @@
 10017.7 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
 10022.9 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 2,2
 
-10033.8 "Synchronized Strike" Ability { id: "AD95", source: "Faithbound Kirin" }
+10033.8 "Synchronized Strike (boss)" Ability { id: "AD95", source: "Faithbound Kirin" }
 # 10034.4 "Synchronized Strike" Ability { id: "AD96", source: "Faithbound Kirin" }
-10038.9 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+10038.9 "Synchronized Smite (arms)" Ability { id: "AD9C", source: "Sculpted Arm" }
 # 10038.9 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
-10045.8 "Synchronized Strike" Ability { id: "AD95", source: "Faithbound Kirin" }
+10045.8 "Synchronized Strike (boss)" Ability { id: "AD95", source: "Faithbound Kirin" }
 # 10046.4 "Synchronized Strike" Ability { id: "AD96", source: "Faithbound Kirin" }
-10050.9 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+10050.9 "Synchronized Smite (arms)" Ability { id: "AD9C", source: "Sculpted Arm" }
 # 10050.9 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
 
 10055.0 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
@@ -167,7 +167,7 @@ label "post_summon_byakko_join"
 15587.0 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
 15596.0 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
 # 15097.0 #"Deadly Hold" Ability { id: "AF80", source: "Chiseled Arm" }
-15597.0 "Deadly Hold" Ability { id: "ADB2", source: "Faithbound Kirin" }
+15597.0 "Deadly Hold" Ability { id: "ADB2", source: "Faithbound Kirin" } window 10000,4000
 # 15098.5 #"Deadly Hold" Ability { id: "ADB6", source: "Chiseled Arm" }
 # 15098.5 #"Deadly Hold" Ability { id: "ADB5", source: "Chiseled Arm" }
 # 15098.7 #"unknown_adb8" Ability { id: "ADB8", source: "Chiseled Arm" }
@@ -179,29 +179,36 @@ label "post_summon_byakko_join"
 15610.5 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
 15619.5 "Shockwave" Ability { id: "ADC0", source: "Chiseled Arm" }
 15640.5 "Kirin Captivator (enrage)"
+15640.5 "--sync--" NameToggle { name: "Faithbound Kirin", toggle: "01" } window 70,0 jump "post_tank_towers"
 
-# 15642.9 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } window 60,10
-15648.0 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 70,10
-15655.5 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
-15659.5 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
-15661.5 "Double Wringer" Ability { id: "AD9D", source: "Faithbound Kirin" }
-15666.0 "Synchronized Strike" Ability { id: "ADA5", source: "Faithbound Kirin" }
-15666.6 "Dead Wringer" Ability { id: "AD98", source: "Sculpted Arm" }
-15666.6 "Dead Wringer" Ability { id: "AD97", source: "Sculpted Arm" }
-15666.6 "Synchronized Strike" Ability { id: "ADA6", source: "Faithbound Kirin" }
-15671.7 "Synchronized Smite" Ability { id: "ADAB", source: "Sculpted Arm" }
-15671.7 "Synchronized Smite" Ability { id: "ADAC", source: "Sculpted Arm" }
-15679.2 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
-15683.2 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
-15684.5 "Synchronized Sequence" Ability { id: "ADA0", source: "Faithbound Kirin" }
-15685.2 "Synchronized Sequence" Ability { id: "ADA1", source: "Faithbound Kirin" }
-15689.6 "Wringer" Ability { id: "ADA2", source: "Faithbound Kirin" }
-15689.6 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
-15689.6 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
-15694.7 "Dead Wringer" Ability { id: "ADA7", source: "Sculpted Arm" }
-15694.7 "Dead Wringer" Ability { id: "ADA8", source: "Sculpted Arm" }
-15702.8 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
-15707.3 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "summon_cast"
+#259.9 MapEffect(257) instance=800375C9, flags=00040004, location=64
+#259.9 MapEffect(257) instance=800375C9, flags=00080004, location=46
+#259.9 NetworkNameToggle(34) id=400015BD, name=Faithbound Kirin, targetId=400015BD, targetName=Faithbound Kirin, toggle=01
+#259.9 MapEffect(257) instance=800375C9, flags=00080004, location=52
+
+16132.5 label "post_tank_towers"
+# 15642.9 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" }
+16148.0 "Wrought Arms" Ability { id: "AD91", source: "Faithbound Kirin" } window 30,10
+16155.5 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
+16159.5 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
+16161.5 "Double Wringer" Ability { id: "AD9D", source: "Faithbound Kirin" }
+16166.0 "Synchronized Strike" Ability { id: "ADA5", source: "Faithbound Kirin" }
+16166.6 "Dead Wringer" Ability { id: "AD98", source: "Sculpted Arm" }
+16166.6 "Dead Wringer" Ability { id: "AD97", source: "Sculpted Arm" }
+16166.6 "Synchronized Strike" Ability { id: "ADA6", source: "Faithbound Kirin" }
+16171.7 "Synchronized Smite" Ability { id: "ADAB", source: "Sculpted Arm" }
+16171.7 "Synchronized Smite" Ability { id: "ADAC", source: "Sculpted Arm" }
+16179.2 "Synchronized Strike" Ability { id: "ADB0", source: "Faithbound Kirin" }
+16183.2 "Wringer" Ability { id: "ADAD", source: "Faithbound Kirin" }
+16184.5 "Synchronized Sequence" Ability { id: "ADA0", source: "Faithbound Kirin" }
+16185.2 "Synchronized Sequence" Ability { id: "ADA1", source: "Faithbound Kirin" }
+16189.6 "Wringer" Ability { id: "ADA2", source: "Faithbound Kirin" }
+16189.6 "Synchronized Smite" Ability { id: "AD9C", source: "Sculpted Arm" }
+16189.6 "Synchronized Smite" Ability { id: "AD9B", source: "Sculpted Arm" }
+16194.7 "Dead Wringer" Ability { id: "ADA7", source: "Sculpted Arm" }
+16194.7 "Dead Wringer" Ability { id: "ADA8", source: "Sculpted Arm" }
+16202.8 "Stonega IV" Ability { id: "ADCA", source: "Faithbound Kirin" }
+16207.3 "--center--" Ability { id: "ADCD", source: "Faithbound Kirin" } forcejump "summon_cast"
 # 15216.2 "Summon Shijin" Ability { id: "AD7E", source: "Faithbound Kirin" }
 
 
